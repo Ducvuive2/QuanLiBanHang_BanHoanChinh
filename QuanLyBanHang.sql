@@ -115,7 +115,9 @@ create table NHANVIEN
    PASSWORD             VARCHAR2(20),
    constraint PK_NHANVIEN primary key (MANV)
 );
-
+ALTER TABLE NHANVIEN  
+  RENAME COLUMN NGSINH to ngVL;
+  commit;
 /*==============================================================*/
 /* Table: SANPHAM                                               */
 /*==============================================================*/
@@ -158,7 +160,7 @@ INSERT INTO KHACHHANG VALUES('KH07', 'Nguyen Van Tam',' 32/3 Tran Binh Trong, Q5
 INSERT INTO KHACHHANG VALUES('KH08', 'Phan Thi Thanh','45/2 An Duong Vuong, Q5, TpHCM','0938435756', '10/1/1971',' 13/12/2006');
 INSERT INTO KHACHHANG VALUES('KH09', 'Le Ha Vinh', '873 Le Hong Phong, Q5, TpHCM','08654763',' 3/9/1979','14/01/2007');
 INSERT INTO KHACHHANG VALUES('KH10', 'Ha Duy Lap', '34/34B Nguyen Trai, Q1, TpHCM', '08768904', '2/5/1983', '16/01/2007');
-
+commit;
 -- NHANVIEN
 INSERT INTO NHANVIEN VALUES('NV01','Nguyen Nhu Nhut', '13/4/2006', 'Nu', '197402123', '432 Tran Hung Dao, Q5, TP HCM', '0927345678', '123456');
 INSERT INTO NHANVIEN VALUES('NV02','Le Thi Phi Yen','21/4/2006', 'Nu', ' 205456372', 'Phan Thi Tu, Binh Chanh, TP HCM', '0987567390', '132465');
