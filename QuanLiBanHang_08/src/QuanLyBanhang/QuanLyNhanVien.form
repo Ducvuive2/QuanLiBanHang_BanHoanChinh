@@ -71,9 +71,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jBTrangChu">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\UIT\Nam2\LapTrinhJava\iconset4\home2.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Trang ch&#x1ee7;"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -87,9 +84,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jBTimKiem">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\UIT\Nam2\LapTrinhJava\iconset4\search-icon-32.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="T&#xec;m ki&#x1ebf;m"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -103,9 +97,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jBThemMoi">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\UIT\Nam2\LapTrinhJava\iconset4\add-icon-1.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Th&#xea;m m&#x1edb;i"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -119,9 +110,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jBXoa">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\UIT\Nam2\LapTrinhJava\iconset4\Actions-edit-delete-icon-32.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="    X&#xf3;a    "/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -135,9 +123,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jBCapNhat">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\UIT\Nam2\LapTrinhJava\iconset4\Actions-document-edit-icon-32.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -151,9 +136,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jBLamMoi">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\UIT\Nam2\LapTrinhJava\iconset4\new-icon-1.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="L&#xe0;m m&#x1edb;i"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -202,23 +184,26 @@
                       <Component id="jLabel7" max="32767" attributes="0"/>
                       <Component id="jLabel6" max="32767" attributes="0"/>
                       <Component id="jLabel5" max="32767" attributes="0"/>
-                      <Component id="jLabel4" pref="65" max="32767" attributes="0"/>
+                      <Component id="jLabel4" max="32767" attributes="0"/>
                       <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="txtMaNV" pref="191" max="32767" attributes="0"/>
-                      <Component id="txtHoTen" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="gtNam" min="-2" pref="77" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="gtNu" min="-2" pref="69" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtMaNV" pref="191" max="32767" attributes="0"/>
+                          <Component id="txtHoTen" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="gtNam" min="-2" pref="77" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="gtNu" min="-2" pref="69" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="txtCMND" max="32767" attributes="0"/>
+                          <Component id="txtDiaChi" max="32767" attributes="0"/>
+                          <Component id="txtSDT" max="32767" attributes="0"/>
+                          <Component id="txtMatKhau" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="txtCMND" max="32767" attributes="0"/>
-                      <Component id="txtDiaChi" max="32767" attributes="0"/>
-                      <Component id="txtSDT" max="32767" attributes="0"/>
-                      <Component id="txtMatKhau" max="32767" attributes="0"/>
+                      <Component id="jDNgVL" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="22" max="32767" attributes="0"/>
               </Group>
@@ -241,7 +226,10 @@
                       <Component id="txtHoTen" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel4" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="jDNgVL" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel5" max="32767" attributes="0"/>
@@ -344,6 +332,8 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtMatKhau">
         </Component>
+        <Component class="com.toedter.calendar.JDateChooser" name="jDNgVL">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="jPanel2">
@@ -351,14 +341,14 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" pref="508" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" alignment="0" pref="537" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jScrollPane1" min="-2" pref="436" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
