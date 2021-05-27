@@ -14,7 +14,7 @@ package main;
 //import java.sql.DriverManager;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
-import QuanLyBanHang.home;
+import TrangChu.home;
 import java.sql.*;
 
 /**
