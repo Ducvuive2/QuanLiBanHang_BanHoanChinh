@@ -30,7 +30,7 @@ public class KhachHangDao {
             ps.setString(3, KH.getDCHI());
             ps.setString(4, KH.getSODT());
             ps.setDate(5,(Date) KH.getNGSINH());
-            ps.setLong(6, KH.getDOANHSO());
+            ps.setLong(6,(long) KH.getDOANHSO());
             ps.setDate(7,(Date) KH.getNGDK());
                
             return ps.executeUpdate() >0;
@@ -72,13 +72,13 @@ public class KhachHangDao {
              PreparedStatement ps = conn.prepareStatement(SQL);
         
             ){
-            ps.setString(1, KH.getMAKH());
-            ps.setString(2, KH.getHOTEN());
-            ps.setString(3, KH.getDCHI());
-            ps.setString(4, KH.getSODT());
-            ps.setDate(5,(Date) KH.getNGSINH());
-            ps.setLong(6, KH.getDOANHSO());
-            ps.setDate(7,(Date) KH.getNGDK());
+            ps.setString(7, KH.getMAKH());
+            ps.setString(1, KH.getHOTEN());
+            ps.setString(2, KH.getDCHI());
+            ps.setString(3, KH.getSODT());
+            ps.setDate(4,(Date) KH.getNGSINH());
+            ps.setLong(5, KH.getDOANHSO());
+            ps.setDate(6,(Date) KH.getNGDK());
                
             return ps.executeUpdate() >0;
                
