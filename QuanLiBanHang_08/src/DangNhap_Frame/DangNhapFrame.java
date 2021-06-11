@@ -29,8 +29,33 @@ public class DangNhapFrame extends javax.swing.JFrame {
         initComponents();
         
         
+        
+        
     }
     
+    
+    public int getNhanVien(){
+      
+            int i=0;
+            String taikhoan=txtTaiKhoan.getText();
+            //String matkhau=new String(txtMatKhau.getPassword());
+            
+        try {
+            conn= OracleJDBCConnection.getJDBCConnection();
+            pst=conn.prepareStatement("select * from nhanvien");
+            rs=pst.executeQuery();
+            while(rs.next()){
+                if(  rs.getString(8).equals(taikhoan)&& rs.getString(10).equals("QUAN LY")){
+                i=1;
+                break;
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DangNhapFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return i;
+    }
     
 
     /**
@@ -98,11 +123,11 @@ public class DangNhapFrame extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(204, 204, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/drawable/user.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\drawable\\user.png")); // NOI18N
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/drawable/gpa-icon-32.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\drawable\\gpa-icon-32.png")); // NOI18N
 
         jSeparator1.setForeground(new java.awt.Color(0, 51, 255));
 
@@ -168,7 +193,7 @@ public class DangNhapFrame extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/drawable/browsing (2).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\drawable\\browsing (2).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -209,6 +234,9 @@ public class DangNhapFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTaiKhoanActionPerformed
 
+    
+    
+    
     private void ButtonDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDNActionPerformed
        
             String taikhoan=txtTaiKhoan.getText();
@@ -241,7 +269,9 @@ public class DangNhapFrame extends javax.swing.JFrame {
             if (flag==0){
                     JOptionPane.showMessageDialog(this, "DANG NHAP THANH CONG!");
                     new home().setVisible(true);
-                    this.dispose();
+                    this.setVisible(false);
+                    
+                    
                     
                     
                     
@@ -306,6 +336,8 @@ public class DangNhapFrame extends javax.swing.JFrame {
                 new DangNhapFrame().setVisible(true);
             }
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
