@@ -235,7 +235,7 @@ public class DangNhapFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTaiKhoanActionPerformed
 
     
-    
+    ////////////////////////////////////
     
     private void ButtonDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDNActionPerformed
        
