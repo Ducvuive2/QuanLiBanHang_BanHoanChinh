@@ -18,7 +18,7 @@ import java.sql.ResultSet;
  */
 public class NhanVienDao {
     public boolean insert(NhanVien NV)  throws Exception {
-        String SQL = "insert into NhanVien(maNV, hoTen, ngVL, gioiTinh, CMND, diaChi, soDT, password ) values(?,?,?,?,?,?,?,?)";
+        String SQL = "insert into NhanVien(maNV, hoTen, ngVL, gioiTinh, CMND, diaChi, soDT,userid, password,loainv ) values(?,?,?,?,?,?,?,?,?,?)";
         
         try(
              Connection conn = OracleJDBCConnection.getJDBCConnection();
@@ -32,7 +32,9 @@ public class NhanVienDao {
             ps.setString(5, NV.getCMND());
             ps.setString(6, NV.getDiaChi());
             ps.setString(7, NV.getSoDT());
-            ps.setString(8, NV.getPass());
+            ps.setString(8, NV.getUserid());
+            ps.setString(9, NV.getPass());
+            ps.setString(10,NV.getLoainv());
                
             return ps.executeUpdate() >0;
         }        
@@ -56,7 +58,9 @@ public class NhanVienDao {
             NV.setCMND(rs.getString("cmnd"));
             NV.setDiaChi(rs.getString("diachi"));
             NV.setSoDT(rs.getString("sodt"));
+            NV.setUserid(rs.getString("userid"));
             NV.setPass(rs.getString("password"));
+            NV.setLoainv(rs.getString("loainv"));
             return NV;
        }
        
@@ -65,25 +69,49 @@ public class NhanVienDao {
     }
       
     public boolean update(NhanVien NV)  throws Exception {
-        String SQL = "update NhanVien set  hoTen = ?, ngVL = ?, gioiTinh=?, CMND=?, diaChi=?, soDT=?, password=? where manv = ?";
+        String SQL = "update NhanVien set  hoTen = ?, ngVL = ?, gioiTinh=?, CMND=?, diaChi=?, soDT=?, userid=?,password=?,loainv=? where manv = ?";
         
         try(
              Connection conn = OracleJDBCConnection.getJDBCConnection();
              PreparedStatement ps = conn.prepareStatement(SQL);
         
             ){
-           ps.setString(8, NV.getMaNV());
+            ps.setString(10, NV.getMaNV());
             ps.setString(1, NV.getHoTen());
-            ps.setDate(2, (Date) NV.getNgVL());
+            ps.setDate  (2, (Date) NV.getNgVL());
             ps.setString(3, NV.getGioiTinh());
             ps.setString(4, NV.getCMND());
             ps.setString(5, NV.getDiaChi());
             ps.setString(6, NV.getSoDT());
-            ps.setString(7, NV.getPass());
+            ps.setString(7, NV.getUserid());
+            ps.setString(8, NV.getPass());
+            ps.setString(9,NV.getLoainv());
                
             return ps.executeUpdate() >0;
         }        
     }
+    
+    
+    
+    
+    public boolean update2(NhanVien NV)  throws Exception {
+        String SQL = "update NhanVien set   diaChi=?, soDT=?, password=? where manv = ?";
+        
+        try(
+             Connection conn = OracleJDBCConnection.getJDBCConnection();
+             PreparedStatement ps = conn.prepareStatement(SQL);
+        
+            ){
+            ps.setString(4, NV.getMaNV());
+            ps.setString(1, NV.getDiaChi());
+            ps.setString(2, NV.getSoDT()); 
+            ps.setString(3, NV.getPass()); 
+            return ps.executeUpdate() >0;
+        }        
+    }
+    
+    
+    
     
     public boolean delete(String MaNV) throws Exception {
         String SQL = "delete from NHANVIEN where manv=?";

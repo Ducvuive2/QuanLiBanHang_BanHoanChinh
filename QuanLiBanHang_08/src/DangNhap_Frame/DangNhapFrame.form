@@ -168,7 +168,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/drawable/user.png"/>
+              <Image iconType="2" name="D:\Code_Java_NetBeans\QuanLiBanHang_BanHoanChinh\QuanLiBanHang_08\src\drawable\user.png"/>
             </Property>
           </Properties>
         </Component>
@@ -179,7 +179,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/drawable/gpa-icon-32.png"/>
+              <Image iconType="2" name="D:\Code_Java_NetBeans\QuanLiBanHang_BanHoanChinh\QuanLiBanHang_08\src\drawable\gpa-icon-32.png"/>
             </Property>
           </Properties>
         </Component>
@@ -237,7 +237,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/drawable/browsing (2).png"/>
+              <Image iconType="2" name="D:\Code_Java_NetBeans\QuanLiBanHang_BanHoanChinh\QuanLiBanHang_08\src\drawable\browsing (2).png"/>
             </Property>
           </Properties>
         </Component>

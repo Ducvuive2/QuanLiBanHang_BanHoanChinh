@@ -34,7 +34,45 @@ public class DangNhapFrame extends javax.swing.JFrame {
     }
     
     
-    public int getNhanVien(){
+    public NhanVien getNhanVien(){
+      
+                                       
+           String    taikhoan=txtTaiKhoan.getText();
+      //   String taikhoan="nv07";
+            NhanVien NV=new NhanVien();
+            //String matkhau=new String(txtMatKhau.getPassword());
+            
+        try {
+            conn= OracleJDBCConnection.getJDBCConnection();
+            pst=conn.prepareStatement("select * from nhanvien");
+            rs=pst.executeQuery();
+            while(rs.next()){
+                
+                if(  rs.getString(8).equals(taikhoan)){
+                    NV.setMaNV(rs.getString(1));
+                    NV.setHoTen(rs.getString(2));
+                    NV.setNgVL(rs.getDate(3));
+                    NV.setGioiTinh(rs.getString(4));
+                    NV.setCMND(rs.getString(5));
+                    NV.setDiaChi(rs.getString(6));
+                    NV.setSoDT(rs.getString(7));
+                    NV.setUserid(rs.getString(8));
+                    NV.setPass(rs.getString(9));
+                    NV.setLoainv(rs.getString(10));            
+                    break;
+                }
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DangNhapFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            return NV;
+    }
+    
+    
+    
+    
+    public int getNhanVien1(){
       
             int i=0;
             String taikhoan=txtTaiKhoan.getText();
@@ -268,7 +306,9 @@ public class DangNhapFrame extends javax.swing.JFrame {
             }
             if (flag==0){
                     JOptionPane.showMessageDialog(this, "DANG NHAP THANH CONG!");
-                    new home().setVisible(true);
+                    //new home().setVisible(true);
+                    new QuanLyTaiKhoan.QuanLyTaiKhoan().setVisible(true);
+                    
                     this.setVisible(false);
                     
                     
@@ -289,7 +329,9 @@ public class DangNhapFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ButtonDNActionPerformed
 
-                      
+         
+       
+        
                  
         
         
