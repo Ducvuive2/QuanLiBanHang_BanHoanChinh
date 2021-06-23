@@ -17,83 +17,21 @@ import java.util.logging.Logger;
  */
 public class DangNhapFrame extends javax.swing.JFrame {
 
-    
+   
     Connection conn;
     ResultSet rs;
    PreparedStatement pst;
+   
    
     /**
      * Creates new form DangNhapFrame
      */
     public DangNhapFrame() {
         initComponents();
-        
-        
-        
-        
     }
+
     
     
-    public NhanVien getNhanVien(){
-      
-                                       
-           String    taikhoan=txtTaiKhoan.getText();
-      //   String taikhoan="nv07";
-            NhanVien NV=new NhanVien();
-            //String matkhau=new String(txtMatKhau.getPassword());
-            
-        try {
-            conn= OracleJDBCConnection.getJDBCConnection();
-            pst=conn.prepareStatement("select * from nhanvien");
-            rs=pst.executeQuery();
-            while(rs.next()){
-                
-                if(  rs.getString(8).equals(taikhoan)){
-                    NV.setMaNV(rs.getString(1));
-                    NV.setHoTen(rs.getString(2));
-                    NV.setNgVL(rs.getDate(3));
-                    NV.setGioiTinh(rs.getString(4));
-                    NV.setCMND(rs.getString(5));
-                    NV.setDiaChi(rs.getString(6));
-                    NV.setSoDT(rs.getString(7));
-                    NV.setUserid(rs.getString(8));
-                    NV.setPass(rs.getString(9));
-                    NV.setLoainv(rs.getString(10));            
-                    break;
-                }
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(DangNhapFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return NV;
-    }
-    
-    
-    
-    
-    public int getNhanVien1(){
-      
-            int i=0;
-            String taikhoan=txtTaiKhoan.getText();
-            //String matkhau=new String(txtMatKhau.getPassword());
-            
-        try {
-            conn= OracleJDBCConnection.getJDBCConnection();
-            pst=conn.prepareStatement("select * from nhanvien");
-            rs=pst.executeQuery();
-            while(rs.next()){
-                if(  rs.getString(8).equals(taikhoan)&& rs.getString(10).equals("QUAN LY")){
-                i=1;
-                break;
-                }
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(DangNhapFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            return i;
-    }
     
 
     /**
@@ -114,15 +52,15 @@ public class DangNhapFrame extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         txtMatKhau = new javax.swing.JPasswordField();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 204));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ĐĂNG NHẬP NGƯỜI DÙNG");
 
@@ -159,13 +97,13 @@ public class DangNhapFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel3.setBackground(new java.awt.Color(0, 255, 102));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\drawable\\user.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\icon\\user.png")); // NOI18N
 
         jLabel4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\drawable\\gpa-icon-32.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\icon\\gpa-icon-32.png")); // NOI18N
 
         jSeparator1.setForeground(new java.awt.Color(0, 51, 255));
 
@@ -179,6 +117,15 @@ public class DangNhapFrame extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox1.setBackground(new java.awt.Color(255, 204, 204));
+        jCheckBox1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        jCheckBox1.setText("Hiển thị mật khẩu");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -187,23 +134,29 @@ public class DangNhapFrame extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(ButtonDN)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ButtonThoat))
-                    .addComponent(txtMatKhau))
-                .addGap(87, 87, 87))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ButtonDN)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ButtonThoat)
+                                .addGap(83, 83, 83))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtTaiKhoan)
+                                    .addComponent(txtMatKhau, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(87, 87, 87))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jSeparator1)
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,34 +169,37 @@ public class DangNhapFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(54, 54, 54)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMatKhau))
-                .addGap(49, 49, 49)
+                .addGap(34, 34, 34)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(38, 38, 38)
+                .addComponent(jCheckBox1)
+                .addGap(32, 32, 32)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonDN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setBackground(new java.awt.Color(0, 255, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\drawable\\browsing (2).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Code_Java_NetBeans\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\icon\\browsing (2).png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -272,13 +228,17 @@ public class DangNhapFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTaiKhoanActionPerformed
 
-    
+     public NhanVien getNhanVien(){
+         return nv;
+    }
     ////////////////////////////////////
+     private NhanVien nv= new NhanVien();
     
     private void ButtonDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDNActionPerformed
        
             String taikhoan=txtTaiKhoan.getText();
-            String matkhau=new String(txtMatKhau.getPassword());
+            String matkhau= new String(txtMatKhau.getPassword()) ;
+           
             
             StringBuilder sb= new StringBuilder();
             if(taikhoan.equals("")){
@@ -299,22 +259,32 @@ public class DangNhapFrame extends javax.swing.JFrame {
             rs=pst.executeQuery();
             int flag=1;
             while(rs.next()){
-                if((rs.getString(8).equals(taikhoan))&&( rs.getString(9).equals(matkhau))){
+                if((rs.getString("userid").equals(taikhoan))&&( rs.getString("password").equals(matkhau))){
+                    nv.setMaNV(rs.getString("MANV"));
+                    nv.setHoTen(rs.getString("HOTEN"));
+                    nv.setCMND(rs.getString("CMND"));
+                    nv.setGioiTinh(rs.getString("GIOITINH"));
+                    nv.setLoainv(rs.getString("LOAINV"));
+                    nv.setDiaChi(rs.getString("DIACHI"));
+                    nv.setNgVL(rs.getDate("NGVL"));
+                    nv.setPass(rs.getString("password"));
+                    nv.setSoDT(rs.getString("SODT"));
+                    nv.setUserid(rs.getString("USERID"));
+                    JOptionPane.showMessageDialog(this, "DANG NHAP THANH CONG!");
+                    QuanLyTaiKhoan.QuanLyTaiKhoan qltkf =new QuanLyTaiKhoan.QuanLyTaiKhoan();
+                    
+                    qltkf.setVisible(true);
+                    this.setVisible(false);
+                    qltkf.setDNF(this);
+                    
                     flag=0;
                     break;
                 }
             }
             if (flag==0){
-                    JOptionPane.showMessageDialog(this, "DANG NHAP THANH CONG!");
+                    
                     //new home().setVisible(true);
-                    new QuanLyTaiKhoan.QuanLyTaiKhoan().setVisible(true);
-                    
-                    this.setVisible(false);
-                    
-                    
-                    
-                    
-                    
+                  
                 }
             else{
                     JOptionPane.showMessageDialog(this, "TAI KHOAN MAT KHAU KHONG CHINH XAC!", "", JOptionPane.ERROR_MESSAGE);
@@ -328,9 +298,12 @@ public class DangNhapFrame extends javax.swing.JFrame {
         } 
         
     }//GEN-LAST:event_ButtonDNActionPerformed
-
-         
        
+    
+         
+//       public NhanVien getTaikhoan(){
+//           return txtTaiKhoan.getText();
+//       }
         
                  
         
@@ -344,6 +317,14 @@ public class DangNhapFrame extends javax.swing.JFrame {
     private void txtMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMouseClicked
         txtMatKhau.setText("");        // TODO add your handling code here:
     }//GEN-LAST:event_txtMatKhauMouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+            if(jCheckBox1.isSelected()) {
+                txtMatKhau.setEchoChar((char)0);
+            }
+            else
+                txtMatKhau.setEchoChar('*');
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -376,8 +357,11 @@ public class DangNhapFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new DangNhapFrame().setVisible(true);
+                
             }
+            
         });
+        
         
         
     }
@@ -385,6 +369,7 @@ public class DangNhapFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonDN;
     private javax.swing.JButton ButtonThoat;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
