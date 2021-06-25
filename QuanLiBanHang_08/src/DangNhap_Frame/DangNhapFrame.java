@@ -29,8 +29,19 @@ public class DangNhapFrame extends javax.swing.JFrame {
     public DangNhapFrame() {
         initComponents();
     }
+    private Thread threadNhan;
 
-    
+    @Override
+    public void dispose() {
+        synchronized(threadNhan) {
+            threadNhan.notify();
+        }
+        super.dispose();
+    }
+    public void setThread(Thread th)
+    {
+        threadNhan=th;
+    }
     
     
 
@@ -259,12 +270,7 @@ public class DangNhapFrame extends javax.swing.JFrame {
                     nv.setSoDT(rs.getString("SODT"));
                     nv.setUserID(rs.getString("USERID"));
                     JOptionPane.showMessageDialog(this, "DANG NHAP THANH CONG!");
-                    QuanLyTaiKhoan.QuanLyTaiKhoan qltk =new QuanLyTaiKhoan.QuanLyTaiKhoan();
-                    
-                    //qltk.setVisible(true);
-                    new home().setVisible(true);
-                    qltk.Load_NV(this);
-                    this.setVisible(false);
+                    dispose();              
      
                     
                     flag=0;

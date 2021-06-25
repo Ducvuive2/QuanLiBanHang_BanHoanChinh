@@ -8,6 +8,7 @@ package QuanLyTaiKhoan;
 import DangNhap_Frame.DangNhapFrame;
 import QuanLyBanHangDao.NhanVienDao;
 import QuanLyBanHangModel.NhanVien;
+import TrangChu.home;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
@@ -28,7 +29,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 /**
  *
- * @author HP
+ * @author Nguyen Khang
  */
 public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
@@ -38,14 +39,17 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     public QuanLyTaiKhoan() {
         initComponents();
         
+        
     }
+    private NhanVien NV;
     
 
   
-    public void Load_NV(DangNhapFrame dnf) {
+    public void setNhanVien(NhanVien nv) {
          //DangNhapFrame DN=new  DangNhapFrame();
-         NhanVien NV = new NhanVien();
-         NV=dnf.getNhanVien();
+         NV=nv;
+         
+        
          //NhanVienDao dao = new NhanVienDao();
          //System.out.println(NV.getMaNV());
          txtmanv.setText(NV.getMaNV());
@@ -404,8 +408,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     }//GEN-LAST:event_txtloainvActionPerformed
 
     private void bt_DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_DangXuatActionPerformed
-       new DangNhapFrame().setVisible(true);
-       this.dispose();// TODO add your handling code here:
+            new DangNhapFrame().setVisible(true);
+            this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_bt_DangXuatActionPerformed
 
     private void txtmanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmanvActionPerformed

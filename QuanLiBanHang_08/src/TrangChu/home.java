@@ -2,10 +2,12 @@
 
 
 package TrangChu;
+import DangNhap_Frame.DangNhapFrame;
 import QuanLyBanHang.QuanLyHoaDon;
 import QuanLyBanHang.QuanLyKhachHang;
 import QuanLyBanHang.QuanLyNhanVien;
 import QuanLyBanHang.QuanLySanPham;
+import QuanLyBanHangModel.NhanVien;
 import QuanLyTaiKhoan.QuanLyTaiKhoan;
 /**
  *
@@ -16,13 +18,15 @@ public class home extends javax.swing.JFrame {
     /**
      * Creates new form home
      */
+    private NhanVien nhanvien=null;
     public home() {
         initJPanel();
         initComponents();
     }
-    private void initJPanel() {
-        
-        QuanLyNhanVien qlnv=new QuanLyNhanVien();
+    private Thread threadGui;
+    private void initJPanel() 
+    {      
+          QuanLyNhanVien qlnv=new QuanLyNhanVien();
         jPanelNV=qlnv.getJPanelNV();
         
         QuanLyHoaDon qlhd=new QuanLyHoaDon();
@@ -31,12 +35,41 @@ public class home extends javax.swing.JFrame {
         QuanLyKhachHang qlkh=new QuanLyKhachHang();
         jPanel_KhachHang=qlkh.getJPanelQLKH();
         
-        QuanLyTaiKhoan qltk=new QuanLyTaiKhoan();
-        jPanel_ThongTinTaiKhoan=qltk.getJPanel_QuanLyTaiKhoan();
-        
         QuanLySanPham qlsp=new QuanLySanPham();
         jPanel_SanPham=qlsp.getJPanel_QLSP();
         
+        QuanLyTaiKhoan qltk=new QuanLyTaiKhoan();
+        
+        jPanel_ThongTinTaiKhoan=qltk.getJPanel_QuanLyTaiKhoan();
+        DangNhapFrame child = new DangNhapFrame();
+        child.setVisible(true);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                {
+                    synchronized (threadGui) {
+                        // Pause
+                        try { 
+                            threadGui.wait();
+//code sau khi mở lại luồng chính
+                            nhanvien=child.getNhanVien();
+                            qltk.setNhanVien(nhanvien);
+                            setVisible(true);
+                        } catch (InterruptedException e) {
+                        }
+                    }
+
+                }
+            }
+
+
+        };
+
+        threadGui = new Thread(runnable);
+        child.setThread(threadGui);
+
+        //từ đây trở lên là trước khi luồng chính bị đóng
+        threadGui.start();    
         
     }
 
@@ -430,11 +463,11 @@ public class home extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-////            public void run() {
-////                new home().setVisible(true);
-////            }
-//        });
+     java.awt.EventQueue.invokeLater(new Runnable() {
+         public void run() {
+              new home();
+           }
+       });
     }
 
     
