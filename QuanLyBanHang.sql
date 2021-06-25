@@ -44,7 +44,8 @@ create table CTHD
    SL                   INTEGER,
    constraint PK_CTHD primary key (MASP, SOHD)
 );
-
+select * from hoadon;
+select * from cthd;
 /*==============================================================*/
 /* Index: CTHD_FK                                               */
 /*==============================================================*/
@@ -67,11 +68,11 @@ create table HOADON
    SOHD                 INTEGER              not null,
     NGHD                 DATE,
    MAKH                 CHAR(4)            ,
-   MANV                 CHAR(4)              not null,
-  
-   TRIGIA               LONG,
+   MANV                 CHAR(4)              not null,  
+   TRIGIA               NUMBER,
    constraint PK_HOADON primary key (SOHD)
 );
+select * from hoadon;
 
 /*==============================================================*/
 /* Index: LAP_FK                                                */
@@ -97,11 +98,13 @@ create table KHACHHANG
    DCHI                 VARCHAR2(50),
    SODT                 VARCHAR2(20),
    NGSINH               DATE,
-   DOANHSO              LONG,
+   DOANHSO              NUMBER,
    NGDK                 DATE,
    constraint PK_KHACHHANG primary key (MAKH)
 );
-
+select * from nhanvien;
+drop table hoadon;
+drop table khachhang;
 /*==============================================================*/
 /* Table: NHANVIEN                                              */
 /*==============================================================*/
@@ -119,6 +122,10 @@ create table NHANVIEN
    LOAINV             VARCHAR2(20),
    constraint PK_NHANVIEN primary key (MANV)
 );
+commit;
+ALTER TABLE NHANVIEN  
+  RENAME COLUMN NGSINH to ngVL ;
+select * from nhanvien;
 /*==============================================================*/
 /* Table: SANPHAM                                               */
 /*==============================================================*/
@@ -149,7 +156,8 @@ alter table HOADON
       references KHACHHANG (MAKH);
 
 -- INSERT D? LI?U
-
+commit ;
+select * from hoadon;
 -- KHACHHANG
 alter session set NLS_DATE_FORMAT = 'DD/MM/YYYY';
 INSERT INTO KHACHHANG  VALUES ('KH01', 'Nguyen Van A', '731, Tran Hung Dao, Q5, TPHCM', '08823451', '22/10/1960', 13060000, '22/07/2006');
@@ -162,6 +170,12 @@ INSERT INTO KHACHHANG  VALUES ('KH07', 'Nguyen Van Tam', '32/3 Tran Binh Trong, 
 INSERT INTO KHACHHANG  VALUES ('KH08', 'Phan Thi Thanh', '45/2 An Duong Vuong, Q5, TPHCM', '0938435756', '10/01/1971', 365000, '13/12/2006');
 INSERT INTO KHACHHANG  VALUES ('KH09', 'Le Ha Vinh', '873 Le Hong Phong, Q5, TPHCM', '08654763', '03/09/1979', 70000, '14/01/2007');
 INSERT INTO KHACHHANG  VALUES ('KH10', 'Ha Duy Lap', '34/34B Nguyen Trai, Q1, TPHCM', '08768904', '02/05/1963', 67500, '16/01/2007');
+INSERT INTO KHACHHANG  VALUES ('KH11', 'Nguyen Thi Lin', 'ktx khu a, Dong hoa, Di An, Binh Duong', '0345678542', '02/05/2001', 0, '16/01/2020');
+INSERT INTO KHACHHANG  VALUES ('KH12', 'Nguyen Thuy Tien', 'Duong Phan Thi Tu, Vinh Loc A, Binh Chanh, TPHCM', '0345670942', '02/06/2001', 0, '16/02/2020');
+INSERT INTO KHACHHANG  VALUES ('KH13', 'Nguyen Man', 'Duong Phan Thi Tu, Vinh Loc A, Binh Chanh, TPHCM', '0345678576', '02/05/1982', 0, '04/03/2020');
+INSERT INTO KHACHHANG  VALUES ('KH14', 'Le Dinh Trai', 'Duong Thoi Hoa, Vinh Loc A, Binh Chanh, TPHCM', '0355678576', '02/08/1982', 0, '04/03/2021');
+INSERT INTO KHACHHANG  VALUES ('KH15', 'Nguyen Thu Hang', 'Duong Quach Dieu, Vinh Loc A, Binh Chanh, TPHCM', '0987678576', '02/05/1990', 0, '05/10/2020');
+
 commit;
 -- NHANVIEN
 INSERT INTO NHANVIEN VALUES('NV01','Nguyen Nhu Nhut', '13/4/2006', 'Nu', '197402123', '432 Tran Hung Dao, Q5, TP HCM', '0927345678','NV01', '123456','QUAN LY');
@@ -169,7 +183,7 @@ INSERT INTO NHANVIEN VALUES('NV02','Le Thi Phi Yen','21/4/2006', 'Nu', ' 2054563
 INSERT INTO NHANVIEN VALUES('NV03','Nguyen Van B','27/4/2006', 'Nam', '204678432', 'Lien ap 123, Binh Hung Hoa, Binh Tan, TP HCM', '0997047382','NV03','124356','NHAN VIEN');
 INSERT INTO NHANVIEN VALUES('NV04','Ngo Thanh Tuan','24/6/2006', 'Nam', '197506386', '345 Le Hong Phong, Q5, TP HCM', '0913758498','NV04', '213465','NHAN VIEN');
 INSERT INTO NHANVIEN VALUES('NV05','Nguyen Thi Truc Thanh','20/7/2006', 'Nu', '234564867', '32/2 An Duong Vuong, Q5, TP HCM', '0918590387','NV05 ', '643251','NHAN VIEN');
-
+select * from nhanvien;
 --SAN PHAM--
 INSERT INTO SANPHAM (MASP, TENSP, DVT, NUOCSX, GIA) VALUES ('BC01', 'But Chi', 'cay', 'Singapore', 3000);
 INSERT INTO SANPHAM (MASP, TENSP, DVT, NUOCSX, GIA) VALUES ('BC02', 'But Chi', 'cay', 'Singapore', 5000);
@@ -195,7 +209,8 @@ INSERT INTO SANPHAM (MASP, TENSP, DVT, NUOCSX, GIA) VALUES ('ST07', 'Phan khong 
 INSERT INTO SANPHAM (MASP, TENSP, DVT, NUOCSX, GIA) VALUES ('ST08', 'Bong bang', 'cai', 'Viet Nam', 1000);
 INSERT INTO SANPHAM (MASP, TENSP, DVT, NUOCSX, GIA) VALUES ('ST09', 'But long', 'cay', 'Viet Nam', 5000);
 INSERT INTO SANPHAM (MASP, TENSP, DVT, NUOCSX, GIA) VALUES ('ST10', 'But long', 'cay', 'Trung Quoc', 7000);
-
+select * from nhanvien;
+commit;
 --HOA DON--
 --SET DATEFORMAT DMY
 INSERT INTO HOADON (SOHD, NGHD, MAKH, MANV, TRIGIA) VALUES (1001, '23/07/2006', 'KH01', 'NV01', 320000);
@@ -221,6 +236,9 @@ INSERT INTO HOADON (SOHD, NGHD, MAKH, MANV, TRIGIA) VALUES (1020, '14/01/2007', 
 INSERT INTO HOADON (SOHD, NGHD, MAKH, MANV, TRIGIA) VALUES (1021, '16/01/2007', 'KH10', 'NV04', 67500);
 INSERT INTO HOADON (SOHD, NGHD, MAKH, MANV, TRIGIA) VALUES (1022, '16/01/2007', Null, 'NV03', 7000);
 INSERT INTO HOADON (SOHD, NGHD, MAKH, MANV, TRIGIA) VALUES (1023, '17/01/2007', Null, 'NV01', 330000);
+INSERT INTO HOADON (SOHD, NGHD, MAKH, MANV, TRIGIA) VALUES (1024, '17/01/2007', Null, 'NV01', 330000);
+INSERT INTO HOADON (SOHD, NGHD, MAKH, MANV, TRIGIA) VALUES (1026, '17/01/2007', Null, 'NV01', 330000);
+--delete from HOADON;
 --CTHD--
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1001, 'TV02', 10);
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1001, 'ST01', 5);
@@ -270,3 +288,197 @@ INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1021, 'TV01', 7);
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1021, 'TV02', 10);
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1022, 'TV02', 10);
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1023, 'ST04', 6);
+
+
+
+
+
+-----------------------TimSoHD------------------
+set serveroutput on;
+create or replace function TimSoHD
+return int
+is
+    cursor cur is select sohd from hoadon ORDER BY sohd asc ;
+    so_hd hoadon.sohd%type;
+    c_sohd hoadon.sohd%type;
+begin
+    open cur;
+    so_hd:=1001;
+    loop
+        fetch cur into c_sohd;
+        dbms_output.put_line(so_hd||' '||c_sohd);
+        exit when so_hd!=c_sohd or cur%notfound; 
+        so_hd:=so_hd+1;
+    end loop;
+    close cur;
+    return so_hd;
+end;
+
+select * from hoadon;
+declare
+n int;
+begin
+    n:= TimSoHD();
+    dbms_output.put_line('so hd'||n);
+end;
+select * from hoadon;
+--------------Check xem ma da có ch?a--------------
+create or replace function Check_Sohd(so_hd int)
+return int
+is
+     cursor cur is select sohd from hoadon;
+     check1 int;
+     c_sohd hoadon.sohd%type;
+begin
+    check1:=0;
+    open cur;
+    --so_hd:=1001;
+    loop
+        fetch cur into c_sohd;
+        --dbms_output.put_line(so_hd||' '||c_sohd);
+        exit when cur%notfound; 
+        if(so_hd = c_sohd) 
+        then check1:=1;
+        end if;
+    end loop;
+    close cur;
+    return check1;
+end;
+
+declare 
+n int;
+begin
+    n:=Check_Sohd(1026);
+    if(n=1)then dbms_output.put_line('Co so hoa don') ;
+    else dbms_output.put_line('Khong co so hoa don');
+    end if;
+end;
+
+
+
+------------------Tang tu dong tong gia hoa don----------------
+set serveroutput on;
+create or replace trigger update_tonghoadon 
+after insert on CTHD
+for each row 
+declare 
+gia1 sanpham.gia%type;
+tonggiatri hoadon.trigia%type;
+begin
+    select s.gia into gia1
+    from sanpham s
+    where s.masp=:new.masp;
+    dbms_output.put_line('gia san pham: '||gia1);
+    select trigia into tonggiatri
+    from hoadon
+    where hoadon.sohd=:new.sohd;
+    dbms_output.put_line('gia tri cu: '||tonggiatri);
+    Update hoadon 
+    set hoadon.trigia =tonggiatri+gia1*:new.sl
+    where hoadon.sohd=:new.sohd;
+    dbms_output.put_line('Cap nhat tri gia thanh cong');
+end;
+
+
+INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'BC02', 2);
+INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'ST10', 2);
+INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'ST04', 1);
+INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'ST05', 1);
+commit;
+------------------So dien thoai phai 10 so va bat dau bang so 0 ----------------
+set serveroutput on;
+create or replace function Check_SDT(sdt in varchar2) return number is
+ v_num number;
+begin
+ begin
+   select to_number(sdt) into v_num from dual;
+   --v_num:=to_number(sdt);
+ exception
+   when invalid_number then
+   return null;
+ end;
+ return v_num;
+end;
+ commit;
+ 
+ create or replace function Check_SDT1(i_val in varchar2) return number is
+ v_num number;
+begin
+ begin
+   if(LENGTH(TRIM(TRANSLATE(string1, ' +-.0123456789', ' ')))!=NULL)then return 0;
+   else return 1;
+   end if;
+end;
+
+declare
+n varchar2(255);
+k int;
+begin
+    n:='123r';
+    k:=Check_SDT(n);
+    if(k>0)then dbms_output.put_line('gia tri '||k);
+    else  dbms_output.put_line('break');
+    end if;
+end;
+
+
+
+INSERT INTO KHACHHANG  VALUES ('KH16', 'Nguyen Van A', '731, Tran Hung Dao, Q5, TPHCM', '08823dt51', '22/10/1960', 13060000, '22/07/2006');
+DELETE FROM khachhang where makh='KH14';
+INSERT INTO KHACHHANG  VALUES ('KH14', 'Nguyen Van A', '731, Tran Hung Dao, Q5, TPHCM', '08888888', '22/10/1960', 13060000, '22/07/2006');
+select * from khachhang;
+
+
+
+/*===================TRIGGER============================*/
+/*==============TRIGGER_CHECK_NGDK_NGHD=================*/
+
+create or replace TRIGGER CHECK_NGDK_NGHD BEFORE INSERT OR UPDATE OF NGHD  ON HOADON
+FOR EACH ROW
+DECLARE
+V_NGDK KHACHHANG.NGDK%TYPE;
+BEGIN
+        SELECT NGDK  INTO V_NGDK
+        FROM KHACHHANG
+        WHERE MAKH = :NEW.MAKH;
+
+        IF V_NGDK > :NEW.NGHD THEN
+         RAISE_APPLICATION_ERROR(-20000,'Ngay hoa don khong hop le, vui long nhap lai') ;
+        ELSE
+        DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
+        END IF; 
+END;
+/*==============TRIGGER_CHECK_NGSINH_NGAYDK=================*/
+create or replace TRIGGER CHECK_NGSINH_NGAYDK BEFORE  INSERT OR UPDATE OF NGDK, NGSINH
+ON KHACHHANG
+FOR EACH ROW
+BEGIN
+     IF :NEW.NGDK < :NEW.NGSINH  THEN 
+       RAISE_APPLICATION_ERROR(-20000,'Ngay dang khi khong hop le, vui long nhap lai') ;
+    ELSE
+   DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
+    END IF; 
+END;
+/*==============UPDATE_DOANHSO=================*/
+CREATE OR REPLACE TRIGGER CHECK_DOANHSO BEFORE INSERT  ON HOADON
+FOR EACH ROW
+BEGIN
+
+    UPDATE KHACHHANG
+    SET DOANHSO = DOANHSO + :NEW.TRIGIA
+    WHERE MAKH = :NEW.MAKH;
+    DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
+END;
+
+/*==============KIEMTRA_DOANHSO=================*/
+CREATE OR REPLACE TRIGGER CHECK_DOANHSO_up BEFORE update of trigia  ON HOADON
+FOR EACH ROW
+declare 
+total number;
+BEGIN
+    UPDATE KHACHHANG
+    SET DOANHSO = doanhso - :old.trigia +:new.trigia
+    WHERE MAKH = :NEW.MAKH;
+    DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
+    
+END;

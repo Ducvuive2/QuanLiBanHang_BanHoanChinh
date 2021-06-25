@@ -14,36 +14,25 @@ package main;
 //import java.sql.DriverManager;
 //import java.sql.ResultSet;
 //import java.sql.Statement;
+import DangNhap_Frame.DangNhapFrame;
 import TrangChu.home;
 import java.sql.*;
 
 /**
  *
- * @author PC
+ * @author DucVuive2
  */
+
+// dm nhom nhu ***
 public class main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws Exception {
-        
-        // TODO code application logic here
-    //Connection con = JDBCConnection.getJDBConnection();
-//    Statement st = con.createStatement();
-//    ResultSet rs = st.executeQuery("select* from nhanvien");
-//    while(rs.next()){
-//        System.out.println(rs.getString(1)+"---"+rs.getString(2));
-//    }
-//      con.close();
-      //NhanVien_Frame nhanVien_Frame = new NhanVien_Frame();
-      //NhanVien_Frame.setVisible(true);
-       //new QLNV_Frame().setVisible(true);
-       new home().setVisible(true);
-       
+
+        new DangNhapFrame().setVisible(true);
     }
-    //java.awt.EventQueue.invokeLater(new Runnable() {
-           // public void run() {
-              
+   
 }
    

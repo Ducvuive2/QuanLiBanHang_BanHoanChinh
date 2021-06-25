@@ -12,19 +12,22 @@ import java.util.Date;
  * @author Nguyen Linh
  */
 public class NhanVien {
-    private String maNV, hoTen, gioiTinh, CMND, diaChi, soDT, pass;
+    private String maNV, hoTen, gioiTinh, CMND, diaChi, soDT, password,userID,loaiNV;
     private Date ngVL;
 
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String hoTen, String gioiTinh, String CMND, String diaChi, String soDT, Date ngVL) {
+    public NhanVien(String maNV, String hoTen, String gioiTinh, String CMND, String diaChi, String soDT, String password, String userID, String loaiNV, Date ngVL) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.CMND = CMND;
         this.diaChi = diaChi;
         this.soDT = soDT;
+        this.password = password;
+        this.userID = userID;
+        this.loaiNV = loaiNV;
         this.ngVL = ngVL;
     }
 
@@ -76,12 +79,29 @@ public class NhanVien {
         this.soDT = soDT;
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getLoaiNV() {
+        return loaiNV;
+    }
+
+    public void setLoaiNV(String loaiNV) {
+        this.loaiNV = loaiNV;
     }
 
     public Date getNgVL() {
@@ -92,4 +112,5 @@ public class NhanVien {
         this.ngVL = ngVL;
     }
     
+
 }
