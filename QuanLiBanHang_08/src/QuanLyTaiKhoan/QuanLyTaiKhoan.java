@@ -40,13 +40,9 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         
     }
     
-private DangNhapFrame dnf;
-    public  void setDNF(DangNhapFrame a)
-    {
-        dnf=a;
-        Load_NV();
-    }
-    void Load_NV() {
+
+  
+    public void Load_NV(DangNhapFrame dnf) {
          //DangNhapFrame DN=new  DangNhapFrame();
          NhanVien NV = new NhanVien();
          NV=dnf.getNhanVien();
@@ -58,9 +54,9 @@ private DangNhapFrame dnf;
          txtcmnd.setText(NV.getCMND());
          txtdiachi.setText(NV.getDiaChi());
          txtgt.setText(NV.getGioiTinh());
-         txtloainv.setText(NV.getLoainv());
-         txttaikhoan.setText(NV.getUserid());
-         txtmatkhau.setText(NV.getPass());
+         txtloainv.setText(NV.getLoaiNV());
+         txttaikhoan.setText(NV.getUserID());
+         txtmatkhau.setText(NV.getPassword());
          txtsdt.setText(NV.getSoDT());
          jdngvl.setDate(NV.getNgVL());
          
@@ -72,6 +68,10 @@ private DangNhapFrame dnf;
         
     }
     
+     public JPanel getJPanel_QuanLyTaiKhoan()
+    {
+        return jPanel_QuanLyTaiKhoan;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,9 +82,7 @@ private DangNhapFrame dnf;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtten = new javax.swing.JTextField();
-        txtloainv = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jPanel_QuanLyTaiKhoan = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
@@ -144,9 +142,9 @@ private DangNhapFrame dnf;
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
