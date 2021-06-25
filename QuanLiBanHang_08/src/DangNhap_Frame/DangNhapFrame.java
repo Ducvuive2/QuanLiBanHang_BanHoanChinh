@@ -265,7 +265,7 @@ public class DangNhapFrame extends javax.swing.JFrame {
                     new home().setVisible(true);
                     qltk.Load_NV(this);
                     this.setVisible(false);
-                    
+     
                     
                     flag=0;
                     break;

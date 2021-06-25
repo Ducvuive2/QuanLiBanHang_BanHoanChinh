@@ -40,9 +40,13 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         
     }
     
-
-  
-    public void Load_NV(DangNhapFrame dnf) {
+private DangNhapFrame dnf;
+    public  void setDNF(DangNhapFrame a)
+    {
+        dnf=a;
+        Load_NV();
+    }
+    void Load_NV() {
          //DangNhapFrame DN=new  DangNhapFrame();
          NhanVien NV = new NhanVien();
          NV=dnf.getNhanVien();
@@ -54,9 +58,9 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
          txtcmnd.setText(NV.getCMND());
          txtdiachi.setText(NV.getDiaChi());
          txtgt.setText(NV.getGioiTinh());
-         txtloainv.setText(NV.getLoaiNV());
-         txttaikhoan.setText(NV.getUserID());
-         txtmatkhau.setText(NV.getPassword());
+         txtloainv.setText(NV.getLoainv());
+         txttaikhoan.setText(NV.getUserid());
+         txtmatkhau.setText(NV.getPass());
          txtsdt.setText(NV.getSoDT());
          jdngvl.setDate(NV.getNgVL());
          
@@ -68,10 +72,6 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         
     }
     
-     public JPanel getJPanel_QuanLyTaiKhoan()
-    {
-        return jPanel_QuanLyTaiKhoan;
-    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -82,7 +82,9 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel_QuanLyTaiKhoan = new javax.swing.JPanel();
+        txtten = new javax.swing.JTextField();
+        txtloainv = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
@@ -142,9 +144,9 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
