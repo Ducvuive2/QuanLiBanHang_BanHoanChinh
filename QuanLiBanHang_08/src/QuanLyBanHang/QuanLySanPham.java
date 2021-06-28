@@ -113,8 +113,6 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanelQLSP = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jBHome = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
         jBfind = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         jBInsert = new javax.swing.JButton();
@@ -138,7 +136,6 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtGia = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,20 +151,13 @@ public class QuanLySanPham extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelQLSP.setPreferredSize(new java.awt.Dimension(1000, 640));
+
+        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setRollover(true);
 
-        jBHome.setText("Trang chủ");
-        jBHome.setFocusable(false);
-        jBHome.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBHome.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jBHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBHomeActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jBHome);
-        jToolBar1.add(jSeparator1);
-
+        jBfind.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBfind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/find.png"))); // NOI18N
         jBfind.setText("Tìm kiếm");
         jBfind.setFocusable(false);
         jBfind.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -180,6 +170,8 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jToolBar1.add(jBfind);
         jToolBar1.add(jSeparator2);
 
+        jBInsert.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBInsert.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/insert.png"))); // NOI18N
         jBInsert.setText("Thêm mới");
         jBInsert.setFocusable(false);
         jBInsert.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -192,7 +184,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jToolBar1.add(jBInsert);
         jToolBar1.add(jSeparator3);
 
-        jBDelete.setText("      Xóa     ");
+        jBDelete.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/delete.png"))); // NOI18N
+        jBDelete.setText("    Xóa   ");
         jBDelete.setFocusable(false);
         jBDelete.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBDelete.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -204,6 +198,8 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jToolBar1.add(jBDelete);
         jToolBar1.add(jSeparator4);
 
+        jBUpDate.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBUpDate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/edit.png"))); // NOI18N
         jBUpDate.setText("Cập nhật");
         jBUpDate.setFocusable(false);
         jBUpDate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -216,6 +212,8 @@ public class QuanLySanPham extends javax.swing.JFrame {
         jToolBar1.add(jBUpDate);
         jToolBar1.add(jSeparator5);
 
+        jBFresh.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBFresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/refresh.png"))); // NOI18N
         jBFresh.setText("Làm mới");
         jBFresh.setFocusable(false);
         jBFresh.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -275,7 +273,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(listSP);
 
-        jPanel2.setBackground(new java.awt.Color(0, 150, 253));
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel2.setText("Mã sản phẩm");
@@ -316,7 +314,7 @@ public class QuanLySanPham extends javax.swing.JFrame {
                     .addComponent(txtTen)
                     .addComponent(cbbDVT, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtGia)
-                    .addComponent(cbbNuocSX, 0, 172, Short.MAX_VALUE))
+                    .addComponent(cbbNuocSX, 0, 207, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -356,41 +354,30 @@ public class QuanLySanPham extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUẢN LÝ SẢN PHẨM");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 204), null));
-
         javax.swing.GroupLayout jPanelQLSPLayout = new javax.swing.GroupLayout(jPanelQLSP);
         jPanelQLSP.setLayout(jPanelQLSPLayout);
         jPanelQLSPLayout.setHorizontalGroup(
             jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelQLSPLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelQLSPLayout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelQLSPLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
         jPanelQLSPLayout.setVerticalGroup(
             jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelQLSPLayout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE))
                 .addGap(19, 19, 19))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -400,121 +387,24 @@ public class QuanLySanPham extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
-        // TODO add your handling code here:
-         StringBuilder sb = new StringBuilder();
-        if (txtMa.getText().equals("")){
-            sb.append("Mã sản phẩm không được để trống!!!");
-            txtMa.setBackground(Color.yellow);
-        } else {
-             txtMa.setBackground(Color.white);
-        }
-        if (sb.length() > 0){
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-      try{  
-        
-        SanPhamDao dao = new SanPhamDao();
-        int result = JOptionPane.showConfirmDialog(this,"Do you want to delete? ","Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (result == JOptionPane.YES_OPTION){
-         dao.delete(txtMa.getText());
-        JOptionPane.showMessageDialog(this, "Sản phẩm đã xóa thành công!");
-        } else {
-        JOptionPane.showMessageDialog(this, "Sản phẩm chưa được xóa!");
-        }
-      } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-          e.printStackTrace();
-      }
-      SanPham_Load();
-    }//GEN-LAST:event_jBDeleteActionPerformed
-
-    private void jBUpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBUpDateActionPerformed
-        // TODO add your handling code here:
-        StringBuilder sb = new StringBuilder();
-        if (txtMa.getText().equals("")){
-            sb.append("Mã sản phẩm không được để trống!!!");
-            txtMa.setBackground(Color.yellow);
-        } else {
-             txtMa.setBackground(Color.white);
-        }
-        if (sb.length() > 0){
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-      try{  
-       SanPham SP =new SanPham();
-           
-        SanPhamDao dao =new SanPhamDao();
-        dao.update(SP);    
-        JOptionPane.showMessageDialog(this, "Sản phẩm được cập nhật thành công!");
-        
-      } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-          e.printStackTrace();
-      }  
-      SanPham_Load();
-    }//GEN-LAST:event_jBUpDateActionPerformed
-
-    private void jBHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBHomeActionPerformed
-        // TODO add your handling code here:
-        new home().setVisible(true);
-    }//GEN-LAST:event_jBHomeActionPerformed
-
-    private void jBInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertActionPerformed
-        // TODO add your handling code here:
-        
-        
-        StringBuilder sb = new StringBuilder();
-        if (txtMa.getText().equals("")){
-            sb.append("Mã sản phẩm không được để trống!!!");
-            txtMa.setBackground(Color.yellow);
-        } else {
-             txtMa.setBackground(Color.white);
-        }
-        if (sb.length() > 0){
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-      try{  
-        SanPham SP = new SanPham();
-        SP.setMaSP(txtMa.getText());
-        SP.setTenSP(txtTen.getText());
-
-        SP.setDVT((String) cbbDVT.getSelectedItem());
-        SP.setNuocSX((String) cbbNuocSX.getSelectedItem());
-        long i = Long.parseLong(txtGia.getText());
-        SP.setGia(i);
-        
-        SanPhamDao dao = new SanPhamDao();
-        dao.insert(SP);    
-        JOptionPane.showMessageDialog(this, "Sản phẩm được thêm vào thành công!");
-      } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-      }   
-    SanPham_Load(); 
-        
-    }//GEN-LAST:event_jBInsertActionPerformed
-
     private void listSPKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listSPKeyReleased
         // TODO add your handling code here:
-         LamMoi();
-        
+        LamMoi();
+
         if(evt.getKeyCode() == KeyEvent.VK_UP || evt.getKeyCode() == KeyEvent.VK_DOWN){
-        int selectedIndex = listSP.getSelectedRow();
-        listSP.setColumnSelectionInterval(0,4);
-        txtMa.setText(listSP.getValueAt(selectedIndex, 0).toString());
-        txtTen.setText(listSP.getValueAt(selectedIndex, 1).toString());
-        String DVT;
-        DVT =( listSP.getValueAt(selectedIndex, 2).toString());
-        cbbDVT.setSelectedItem(DVT);
-        
-        String NuocSX;
-        NuocSX = ( listSP.getValueAt(selectedIndex, 3).toString());
-        cbbNuocSX.setSelectedItem(NuocSX);
-        
-        txtGia.setText(listSP.getValueAt(selectedIndex, 4).toString()); 
+            int selectedIndex = listSP.getSelectedRow();
+            listSP.setColumnSelectionInterval(0,4);
+            txtMa.setText(listSP.getValueAt(selectedIndex, 0).toString());
+            txtTen.setText(listSP.getValueAt(selectedIndex, 1).toString());
+            String DVT;
+            DVT =( listSP.getValueAt(selectedIndex, 2).toString());
+            cbbDVT.setSelectedItem(DVT);
+
+            String NuocSX;
+            NuocSX = ( listSP.getValueAt(selectedIndex, 3).toString());
+            cbbNuocSX.setSelectedItem(NuocSX);
+
+            txtGia.setText(listSP.getValueAt(selectedIndex, 4).toString());
         }
     }//GEN-LAST:event_listSPKeyReleased
 
@@ -528,52 +418,143 @@ public class QuanLySanPham extends javax.swing.JFrame {
         String DVT;
         DVT =( listSP.getValueAt(selectedIndex, 2).toString());
         cbbDVT.setSelectedItem(DVT);
-        
+
         String NuocSX;
         NuocSX = ( listSP.getValueAt(selectedIndex, 3).toString());
         cbbNuocSX.setSelectedItem(NuocSX);
-        
-        txtGia.setText(listSP.getValueAt(selectedIndex, 4).toString()); 
-        
-    }//GEN-LAST:event_listSPMouseClicked
 
-    private void jBfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfindActionPerformed
-        // TODO add your handling code here:
-       
-        StringBuilder sb = new StringBuilder();
-        if (txtMa.getText().equals("")){
-            sb.append("Mã sản phẩm không được để trống!!!");
-            txtMa.setBackground(Color.yellow);
-        } else {
-             txtMa.setBackground(Color.white);
-        }
-        if (sb.length() > 0){
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-      try{      
-        SanPhamDao dao = new SanPhamDao();
-        SanPham SP = dao.find(txtMa.getText());
-        if (SP != null){
-            //XuatThongTin
-        txtMa.setText(SP.getMaSP());
-        txtTen.setText(SP.getTenSP());
-        cbbDVT.setSelectedItem(SP.getDVT());
-        cbbNuocSX.setSelectedItem(SP.getNuocSX());
-        txtGia.setText(String.valueOf( SP.getGia()));
-        } else
-        JOptionPane.showMessageDialog(this, "Sản phẩm tìm kiếm không hợp lệ!");
-        
-      } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-          e.printStackTrace();
-      }  
-    }//GEN-LAST:event_jBfindActionPerformed
+        txtGia.setText(listSP.getValueAt(selectedIndex, 4).toString());
+
+    }//GEN-LAST:event_listSPMouseClicked
 
     private void jBFreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBFreshActionPerformed
         // TODO add your handling code here:
         LamMoi();
     }//GEN-LAST:event_jBFreshActionPerformed
+
+    private void jBUpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBUpDateActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().equals("")){
+            sb.append("Mã sản phẩm không được để trống!!!");
+            txtMa.setBackground(Color.yellow);
+        } else {
+            txtMa.setBackground(Color.white);
+        }
+        if (sb.length() > 0){
+            JOptionPane.showMessageDialog(this, sb);
+            return;
+        }
+        try{
+            SanPham SP =new SanPham();
+
+            SanPhamDao dao =new SanPhamDao();
+            dao.update(SP);
+            JOptionPane.showMessageDialog(this, "Sản phẩm được cập nhật thành công!");
+
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        SanPham_Load();
+    }//GEN-LAST:event_jBUpDateActionPerformed
+
+    private void jBDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteActionPerformed
+        // TODO add your handling code here:
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().equals("")){
+            sb.append("Mã sản phẩm không được để trống!!!");
+            txtMa.setBackground(Color.yellow);
+        } else {
+            txtMa.setBackground(Color.white);
+        }
+        if (sb.length() > 0){
+            JOptionPane.showMessageDialog(this, sb);
+            return;
+        }
+        try{
+
+            SanPhamDao dao = new SanPhamDao();
+            int result = JOptionPane.showConfirmDialog(this,"Do you want to delete? ","Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION){
+                dao.delete(txtMa.getText());
+                JOptionPane.showMessageDialog(this, "Sản phẩm đã xóa thành công!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Sản phẩm chưa được xóa!");
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        SanPham_Load();
+    }//GEN-LAST:event_jBDeleteActionPerformed
+
+    private void jBInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertActionPerformed
+        // TODO add your handling code here:
+
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().equals("")){
+            sb.append("Mã sản phẩm không được để trống!!!");
+            txtMa.setBackground(Color.yellow);
+        } else {
+            txtMa.setBackground(Color.white);
+        }
+        if (sb.length() > 0){
+            JOptionPane.showMessageDialog(this, sb);
+            return;
+        }
+        try{
+            SanPham SP = new SanPham();
+            SP.setMaSP(txtMa.getText());
+            SP.setTenSP(txtTen.getText());
+
+            SP.setDVT((String) cbbDVT.getSelectedItem());
+            SP.setNuocSX((String) cbbNuocSX.getSelectedItem());
+            long i = Long.parseLong(txtGia.getText());
+            SP.setGia(i);
+
+            SanPhamDao dao = new SanPhamDao();
+            dao.insert(SP);
+            JOptionPane.showMessageDialog(this, "Sản phẩm được thêm vào thành công!");
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+        }
+        SanPham_Load();
+
+    }//GEN-LAST:event_jBInsertActionPerformed
+
+    private void jBfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfindActionPerformed
+        // TODO add your handling code here:
+
+        StringBuilder sb = new StringBuilder();
+        if (txtMa.getText().equals("")){
+            sb.append("Mã sản phẩm không được để trống!!!");
+            txtMa.setBackground(Color.yellow);
+        } else {
+            txtMa.setBackground(Color.white);
+        }
+        if (sb.length() > 0){
+            JOptionPane.showMessageDialog(this, sb);
+            return;
+        }
+        try{
+            SanPhamDao dao = new SanPhamDao();
+            SanPham SP = dao.find(txtMa.getText());
+            if (SP != null){
+                //XuatThongTin
+                txtMa.setText(SP.getMaSP());
+                txtTen.setText(SP.getTenSP());
+                cbbDVT.setSelectedItem(SP.getDVT());
+                cbbNuocSX.setSelectedItem(SP.getNuocSX());
+                txtGia.setText(String.valueOf( SP.getGia()));
+            } else
+            JOptionPane.showMessageDialog(this, "Sản phẩm tìm kiếm không hợp lệ!");
+
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jBfindActionPerformed
 
     /**
      * @param args the command line arguments
@@ -613,11 +594,9 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbbNuocSX;
     private javax.swing.JButton jBDelete;
     private javax.swing.JButton jBFresh;
-    private javax.swing.JButton jBHome;
     private javax.swing.JButton jBInsert;
     private javax.swing.JButton jBUpDate;
     private javax.swing.JButton jBfind;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -628,7 +607,6 @@ public class QuanLySanPham extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanelQLSP;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;

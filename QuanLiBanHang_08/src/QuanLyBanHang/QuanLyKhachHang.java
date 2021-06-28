@@ -198,8 +198,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jDNgSinh = new com.toedter.calendar.JDateChooser();
         jDNgDK = new com.toedter.calendar.JDateChooser();
         jToolBar1 = new javax.swing.JToolBar();
-        jBTrangChu = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
         jBTimKiem = new javax.swing.JButton();
         jSeparator6 = new javax.swing.JToolBar.Separator();
         jBThemMoi = new javax.swing.JButton();
@@ -209,7 +207,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jBCapNhat = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         jBLamMoi = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -285,7 +282,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(0, 150, 235));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel2.setText("Mã Khách hàng");
 
@@ -336,6 +333,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaKH, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -369,18 +367,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setRollover(true);
 
-        jBTrangChu.setText("Trang chủ");
-        jBTrangChu.setFocusable(false);
-        jBTrangChu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jBTrangChu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jBTrangChu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBTrangChuActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jBTrangChu);
-        jToolBar1.add(jSeparator1);
-
+        jBTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/find.png"))); // NOI18N
         jBTimKiem.setText("Tìm kiếm");
         jBTimKiem.setFocusable(false);
         jBTimKiem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -393,6 +380,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jToolBar1.add(jBTimKiem);
         jToolBar1.add(jSeparator6);
 
+        jBThemMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/insert.png"))); // NOI18N
         jBThemMoi.setText("Thêm mới");
         jBThemMoi.setFocusable(false);
         jBThemMoi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -405,6 +393,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jToolBar1.add(jBThemMoi);
         jToolBar1.add(jSeparator3);
 
+        jBXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/delete.png"))); // NOI18N
         jBXoa.setText("    Xóa    ");
         jBXoa.setFocusable(false);
         jBXoa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -417,6 +406,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jToolBar1.add(jBXoa);
         jToolBar1.add(jSeparator4);
 
+        jBCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/edit.png"))); // NOI18N
         jBCapNhat.setText("Cập nhật");
         jBCapNhat.setFocusable(false);
         jBCapNhat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -429,6 +419,7 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         jToolBar1.add(jBCapNhat);
         jToolBar1.add(jSeparator5);
 
+        jBLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/refresh.png"))); // NOI18N
         jBLamMoi.setText("Làm mới");
         jBLamMoi.setFocusable(false);
         jBLamMoi.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -440,12 +431,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
         });
         jToolBar1.add(jBLamMoi);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("QUẢN LÝ KHÁCH HÀNG");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(204, 0, 204), null));
-
         javax.swing.GroupLayout jPanelQLKHLayout = new javax.swing.GroupLayout(jPanelQLKH);
         jPanelQLKH.setLayout(jPanelQLKHLayout);
         jPanelQLKHLayout.setHorizontalGroup(
@@ -453,29 +438,25 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             .addGroup(jPanelQLKHLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelQLKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanelQLKHLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelQLKHLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(jPanelQLKHLayout.createSequentialGroup()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18))))
         );
         jPanelQLKHLayout.setVerticalGroup(
             jPanelQLKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelQLKHLayout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelQLKHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelQLKHLayout.createSequentialGroup()
-                        .addGap(0, 3, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 57, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -535,10 +516,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_listKHKeyReleased
-
-    private void jBTrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTrangChuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBTrangChuActionPerformed
 
     private void jBTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTimKiemActionPerformed
         // TODO add your handling code here:
@@ -742,11 +719,9 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
     private javax.swing.JButton jBLamMoi;
     private javax.swing.JButton jBThemMoi;
     private javax.swing.JButton jBTimKiem;
-    private javax.swing.JButton jBTrangChu;
     private javax.swing.JButton jBXoa;
     private com.toedter.calendar.JDateChooser jDNgDK;
     private com.toedter.calendar.JDateChooser jDNgSinh;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -754,7 +729,6 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanelQLKH;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator3;
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
