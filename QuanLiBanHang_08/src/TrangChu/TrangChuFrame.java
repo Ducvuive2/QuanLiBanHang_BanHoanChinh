@@ -46,8 +46,21 @@ public class TrangChuFrame extends javax.swing.JFrame {
                                     if (i==isSelected-1) listJCheckbox.get(i).setSelected(true);
                                     else listJCheckbox.get(i).setSelected(false);
                                 }
-                                MyScrollPanel.scroll(jScrollPane2,0.0,1.0*(isSelected-1)/4);
-
+                                if (isSelected==1)
+                                {
+                                    for (int i=37;i>=0;i--)
+                                    {
+                                        Double toado=1.0*i/50;
+                                        MyScrollPanel.scroll(jScrollPane2,0.0,toado);
+                                        Thread.sleep(10);
+                                    }
+                                }else
+                                for (int i=0;i<50;i++)
+                                {
+                                    Double toado=1.0*(isSelected-2)/4+1.0*(i+1)*0.005;
+                                    MyScrollPanel.scroll(jScrollPane2,0.0,toado);
+                                    Thread.sleep(10);
+                                }
                             }
                         } catch (InterruptedException e) {
                         }
@@ -63,6 +76,10 @@ public class TrangChuFrame extends javax.swing.JFrame {
         thread.start();
 
        
+    }
+    private void animationScroll()
+    {
+
     }
     public JPanel getPanel()
     {
