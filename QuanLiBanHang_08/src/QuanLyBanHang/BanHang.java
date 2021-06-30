@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package QuanLyBanHang;
 
 import QuanLyBanHangDao.CTHD_Dao;
@@ -12,10 +8,13 @@ import QuanLyBanHangModel.CTHD;
 import QuanLyBanHangModel.HoaDon;
 import QuanLyBanHangModel.NhanVien;
 import QuanLyBanHangDao.HoaDon_Dao;
+import java.awt.BufferCapabilities;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.CallableStatement;
-
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,10 +27,12 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
-
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -46,8 +47,10 @@ public class BanHang extends javax.swing.JFrame {
     PreparedStatement ps;
     ResultSet rs;
     Long Tong;
-
+    private ImageIcon icon;	
     public BanHang() {
+       
+        
         initComponents();
         getContentPane().setBackground(Color.white); 
         Connect();
@@ -73,7 +76,9 @@ public class BanHang extends javax.swing.JFrame {
             //Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        
+      
+    
+    
     public void CTHD_Load(){
          CTHD cthd = new CTHD();
         try {
@@ -135,6 +140,7 @@ public class BanHang extends javax.swing.JFrame {
         jBCapNhat = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         jBLamMoi = new javax.swing.JButton();
+        jSeparator7 = new javax.swing.JToolBar.Separator();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtSoHD = new javax.swing.JTextField();
@@ -156,11 +162,13 @@ public class BanHang extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanelNV.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
+
         jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setRollover(true);
         jToolBar1.add(jSeparator1);
 
-        jBTimKiem.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBTimKiem.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/find.png"))); // NOI18N
         jBTimKiem.setText("Tìm kiếm");
         jBTimKiem.setFocusable(false);
@@ -174,7 +182,7 @@ public class BanHang extends javax.swing.JFrame {
         jToolBar1.add(jBTimKiem);
         jToolBar1.add(jSeparator6);
 
-        jBThemMoi.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBThemMoi.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBThemMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/insert.png"))); // NOI18N
         jBThemMoi.setText("Thêm mới");
         jBThemMoi.setFocusable(false);
@@ -188,7 +196,7 @@ public class BanHang extends javax.swing.JFrame {
         jToolBar1.add(jBThemMoi);
         jToolBar1.add(jSeparator3);
 
-        jBXoa.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBXoa.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/delete.png"))); // NOI18N
         jBXoa.setText("    Xóa    ");
         jBXoa.setFocusable(false);
@@ -202,7 +210,7 @@ public class BanHang extends javax.swing.JFrame {
         jToolBar1.add(jBXoa);
         jToolBar1.add(jSeparator4);
 
-        jBCapNhat.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBCapNhat.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/edit.png"))); // NOI18N
         jBCapNhat.setText("Cập nhật");
         jBCapNhat.setFocusable(false);
@@ -216,7 +224,7 @@ public class BanHang extends javax.swing.JFrame {
         jToolBar1.add(jBCapNhat);
         jToolBar1.add(jSeparator5);
 
-        jBLamMoi.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jBLamMoi.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/refresh.png"))); // NOI18N
         jBLamMoi.setText("Làm mới");
         jBLamMoi.setFocusable(false);
@@ -228,6 +236,7 @@ public class BanHang extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(jBLamMoi);
+        jToolBar1.add(jSeparator7);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -332,8 +341,6 @@ public class BanHang extends javax.swing.JFrame {
                 .addGap(69, 69, 69))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 0));
-
         listCTHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -384,7 +391,7 @@ public class BanHang extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -399,11 +406,13 @@ public class BanHang extends javax.swing.JFrame {
             jPanelNVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelNVLayout.createSequentialGroup()
                 .addGroup(jPanelNVLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelNVLayout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelNVLayout.createSequentialGroup()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelNVLayout.setVerticalGroup(
@@ -421,13 +430,15 @@ public class BanHang extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 894, Short.MAX_VALUE)
+            .addGap(0, 904, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanelNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(jPanelNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addGap(0, 552, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanelNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -438,46 +449,7 @@ public class BanHang extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTimKiemActionPerformed
-/*        // TODO add your handling code here:
-          StringBuilder sb = new StringBuilder();
-        if (txtMaNV.getText().equals("")){
-            sb.append("Mã nhân viên không được để trống!!!");
-            txtMaNV.setBackground(Color.yellow);
-        } else {
-             txtMaNV.setBackground(Color.white);
-        }
-        if (sb.length() > 0){
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-      try{      
-        NhanVienDao dao = new NhanVienDao();
-        NhanVien NV = dao.find(txtMaNV.getText());
-        if (NV != null){
-            //XuatThongTin
-        txtMaNV.setText(NV.getMaNV());
-        txtHoTen.setText(NV.getHoTen());
-        jDNgVL.setDate(NV.getNgVL());
-        if (NV.getGioiTinh().equals("Nam")){
-            gtNu.setSelected(false);
-            gtNam.setSelected(true);
-        } else {
-            gtNu.setSelected(true);
-            gtNam.setSelected(false);
-        }
-        txtCMND.setText(NV.getCMND());
-        txtDiaChi.setText(NV.getDiaChi());
-        txtSDT.setText(NV.getSoDT());
-        txtMatKhau.setText(NV.getPassword());
-        TxtLoaiNhanVien.setText(NV.getLoaiNV());
-        txtUserID.setText(NV.getUserID());
-        } else
-        JOptionPane.showMessageDialog(this, "Nhân viên tìm kiếm không hợp lệ!");
-        
-      } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-          e.printStackTrace();
-      }  */
+
     }//GEN-LAST:event_jBTimKiemActionPerformed
 
     private void jBThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBThemMoiActionPerformed
@@ -503,83 +475,11 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_jBThemMoiActionPerformed
 
     private void jBXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBXoaActionPerformed
-      /*  // TODO add your handling code here:
-          StringBuilder sb = new StringBuilder();
-        if (txtMaNV.getText().equals("")){
-            sb.append("Mã nhân viên không được để trống!!!");
-            txtMaNV.setBackground(Color.yellow);
-        } else {
-             txtMaNV.setBackground(Color.white);
-        }
-        if (sb.length() > 0){
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-      try{  
-        
-        NhanVienDao dao = new NhanVienDao();
-        int result = JOptionPane.showConfirmDialog(this,"Do you want to delete? ","Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if (result == JOptionPane.YES_OPTION){
-         dao.delete(txtMaNV.getText());
-        JOptionPane.showMessageDialog(this, "Nhân viên đã xóa thành công!");
-        } else {
-        JOptionPane.showMessageDialog(this, "Nhân viên chưa được xóa!");
-        }
-      } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-          e.printStackTrace();
-      }
-      NhanVien_Load();
-        */
+   
     }//GEN-LAST:event_jBXoaActionPerformed
 
     private void jBCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCapNhatActionPerformed
-       /* // TODO add your handling code here:
-        StringBuilder sb = new StringBuilder();
-        if (txtMaNV.getText().equals("")){
-            sb.append("Mã nhân viên không được để trống!!!");
-            txtMaNV.setBackground(Color.yellow);
-        } else {
-             txtMaNV.setBackground(Color.white);
-        }
-        if (sb.length() > 0){
-            JOptionPane.showMessageDialog(this, sb);
-            return;
-        }
-      try{  
-        NhanVien NV = new NhanVien();
-        NV.setMaNV(txtMaNV.getText());
-        NV.setHoTen(txtHoTen.getText());
-        //Chuyen doi java.util.Date sang java.sql.Date
-        if(jDNgVL.getDate() != null ){
-        java.util.Date utilStartDate = jDNgVL.getDate();
-        java.sql.Date sqlStartDate = new java.sql.Date(utilStartDate.getTime());
-        NV.setNgVL(sqlStartDate);
-    }
-        gtNam.setText("Nam");
-        gtNu.setText("Nu");
-        if(gtNam.isSelected()){
-            NV.setGioiTinh(gtNam.getText());
-        }
-        if (gtNu.isSelected()){
-             NV.setGioiTinh(gtNu.getText());
-        }
-        NV.setCMND(txtCMND.getText());
-        NV.setDiaChi(txtDiaChi.getText());
-        NV.setSoDT(txtSDT.getText());
-        NV.setPassword(txtMatKhau.getText());    
-        NV.setLoaiNV(TxtLoaiNhanVien.getText());
-        NV.setUserID(txtUserID.getText());
-        NhanVienDao dao = new NhanVienDao();
-        dao.update(NV);    
-        JOptionPane.showMessageDialog(this, "Nhân viên được cập nhật thành công!");
-        
-      } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-          e.printStackTrace();
-      }  
-      NhanVien_Load();
-        */
+      
     }//GEN-LAST:event_jBCapNhatActionPerformed
 
     private void jBLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLamMoiActionPerformed
@@ -721,7 +621,7 @@ public class BanHang extends javax.swing.JFrame {
     private void Bt_HoanTatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_HoanTatActionPerformed
         // TODO add your handling code here:
         HoaDon_Dao hd = new HoaDon_Dao();
-        
+        dispose();
     }//GEN-LAST:event_Bt_HoanTatActionPerformed
 
     /**
@@ -750,14 +650,39 @@ public class BanHang extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(QuanLyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+  
                 new BanHang().setVisible(true);
             }
         });
     }
+    
+    class ImagePanel extends JPanel {
+
+  private Image img;
+
+  public ImagePanel(String img) {
+    this(new ImageIcon(img).getImage());
+  }
+
+  public ImagePanel(Image img) {
+    this.img = img;
+    Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
+    setPreferredSize(size);
+    setMinimumSize(size);
+    setMaximumSize(size);
+    setSize(size);
+    setLayout(null);
+  }
+
+  public void paintComponent(Graphics g) {
+    g.drawImage(img, 0, 0, null);
+  }
+
+}  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Bt_HoanTat;
@@ -783,6 +708,7 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar.Separator jSeparator6;
+    private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTable listCTHD;
     private javax.swing.JTextField txtMaKH;

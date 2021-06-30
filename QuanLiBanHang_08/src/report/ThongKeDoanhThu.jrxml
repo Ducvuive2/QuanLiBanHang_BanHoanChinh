@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoLuong" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="120b8a80-265e-49cc-aa27-4d53b4d1218c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nam" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[Select SOHD, extract (month from nghd)||'/'||extract (year from nghd),MAKH,MANV,TRIGIA
+from hoadon
+where extract(year from NGHD)= $P{nam}
+order by extract (month from nghd)]]>
+	</queryString>
+	<field name="SOHD" class="java.math.BigDecimal"/>
+	<field name="EXTRACT(MONTHFROMNGHD)||&apos;/&apos;||EXTRACT(YEARFROMNGHD)" class="java.lang.String"/>
+	<field name="MAKH" class="java.lang.String"/>
+	<field name="MANV" class="java.lang.String"/>
+	<field name="TRIGIA" class="java.math.BigDecimal"/>
+	<variable name="TRIGIA_1" class="java.math.BigDecimal" resetType="Group" resetGroup="Month" calculation="Sum">
+		<variableExpression><![CDATA[$F{TRIGIA}]]></variableExpression>
+	</variable>
+	<variable name="TRIGIA_2" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{TRIGIA}]]></variableExpression>
+	</variable>
+	<group name="Month" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{EXTRACT(MONTHFROMNGHD)||'/'||EXTRACT(YEARFROMNGHD)}]]></groupExpression>
+		<groupHeader>
+			<band height="84">
+				<image>
+					<reportElement x="0" y="39" width="555" height="45" uuid="5c9fe893-400a-468b-b25a-1d0dcab060b3"/>
+					<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\pink3.jpg"]]></imageExpression>
+				</image>
+				<textField>
+					<reportElement x="-1" y="8" width="100" height="31" uuid="3b23a833-2ce9-4cfa-93b0-a8f864b95c7d"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{EXTRACT(MONTHFROMNGHD)||'/'||EXTRACT(YEARFROMNGHD)}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="0" y="42" width="100" height="31" uuid="269b7df1-c944-41fb-a75b-825a8e6b8e51"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Số hoá đơn]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="178" y="42" width="100" height="31" uuid="439c894f-1cff-411a-9920-99c5472ca411"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Mã nhân viên]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="404" y="42" width="100" height="31" uuid="d53126b9-6e37-4cfd-82e7-fb2018b5d568"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Trị giá]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="48">
+				<staticText>
+					<reportElement x="202" y="17" width="154" height="31" uuid="b32bedfa-7613-4844-92c8-930e58db60f4"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<text><![CDATA[Tổng doanh thu trong tháng:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="404" y="17" width="100" height="31" uuid="6b4597db-6795-44fc-a50a-282eaba53cca"/>
+					<textElement>
+						<font size="16"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TRIGIA_1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="37" y="10" width="501" height="1" uuid="17d7ec6d-9fac-4812-a6ca-baad68210e86"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="-1" y="0" width="748" height="802" uuid="a626b52f-57b5-4ae9-9c9a-3d6ea630ad2f"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\blue1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="87" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="87" uuid="de3f1c5e-267b-4e97-9946-f98b21ae4b08"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\Blue.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="487" y="6" width="64" height="64" uuid="8e0b2735-8eef-4f6d-9359-45f94c6d4ea5"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\report_blue.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="79" y="12" width="408" height="40" forecolor="#FF3333" uuid="2ea362ec-ccab-45f8-8254-b32f851fe4b4"/>
+				<textElement>
+					<font fontName="SansSerif" size="18"/>
+				</textElement>
+				<text><![CDATA[Thống kê số lượng sản phẩm bán được trong năm]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="240" y="41" width="100" height="29" forecolor="#FF0000" uuid="e1df2ca8-6516-45e3-869b-68bccf7ce02c"/>
+				<textElement>
+					<font fontName="Cambria" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nam}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="2" width="64" height="64" uuid="f7cbb74b-689c-4efb-8015-b187eee03477"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\analytics_documents_report_statistics_icon_127215.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="41" splitType="Stretch">
+			<textField>
+				<reportElement x="178" y="10" width="100" height="31" uuid="a168c571-8260-42fa-b95d-dc117e6c9909"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MANV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="404" y="10" width="100" height="31" uuid="6c5a9b94-fbdd-4912-8d16-34dec07371de"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRIGIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="10" width="100" height="31" uuid="dd3814ae-ff7b-42db-bfad-e46d2ff2de6b"/>
+				<textElement>
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SOHD}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="101" splitType="Stretch">
+			<image>
+				<reportElement x="18" y="3" width="96" height="96" uuid="924688d6-d129-4d2e-a164-5490b5bd3571"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\4230540-analysis-graph-report_115003.png"]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="136" y="11" width="185" height="31" uuid="a4915ddd-9cf2-45c4-870e-9309835c6125"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng doanh thu trong năm:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="406" y="9" width="100" height="31" uuid="81f32687-c9b9-45f7-9f19-2755c76f5443"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TRIGIA_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
