@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
+import main.main;
 /**
  *
  * @author Nguyen Khang
@@ -71,6 +72,7 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         
         
     }
+ 
     
      public JPanel getJPanel_QuanLyTaiKhoan()
     {
@@ -442,7 +444,8 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
 
     private void bt_DangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_DangXuatActionPerformed
             new DangNhapFrame().setVisible(true);
-            dispose();// TODO add your handling code here:
+            main.logout();
+            // TODO add your handling code here:
     }//GEN-LAST:event_bt_DangXuatActionPerformed
 
     private void txtmanvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtmanvActionPerformed

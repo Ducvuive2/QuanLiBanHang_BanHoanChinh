@@ -8,6 +8,7 @@ import QuanLyBanHangModel.CTHD;
 import QuanLyBanHangModel.HoaDon;
 import QuanLyBanHangModel.NhanVien;
 import QuanLyBanHangDao.HoaDon_Dao;
+import TrangChu.home;
 import java.awt.BufferCapabilities;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -33,6 +34,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.JTabbedPane;
 
 /**
  *
@@ -47,9 +49,11 @@ public class BanHang extends javax.swing.JFrame {
     PreparedStatement ps;
     ResultSet rs;
     Long Tong;
+    private home home;
     private ImageIcon icon;	
-    public BanHang() {
-       
+    public BanHang(){}
+    public BanHang(home home) {
+       this.home=home;
         
         initComponents();
         getContentPane().setBackground(Color.white); 
@@ -85,11 +89,8 @@ public class BanHang extends javax.swing.JFrame {
             ps = conn.prepareStatement("SELECT * FROM CTHD WHERE SOHD = ? ");
             ps.setInt(1, Integer.parseInt(txtSoHD.getText()));
             rs = ps.executeQuery();
+           
             
-           // System.out.println("De test");
-            //ResultSetMetaData rsd = rs.getMetaData();
-            //int c = rsd.getColumnCount();
-            //System.out.println(c);
             DefaultTableModel model = (DefaultTableModel) listCTHD.getModel();
             model.setRowCount(0);
             
@@ -612,7 +613,7 @@ public class BanHang extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
       }
       CTHD_Load();
-      Tong=Tong+Integer.parseInt(txtSoLuong.getText());
+      
       txtMaSP.setText("");
       txtSoLuong.setText("");
       
@@ -621,7 +622,9 @@ public class BanHang extends javax.swing.JFrame {
     private void Bt_HoanTatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Bt_HoanTatActionPerformed
         // TODO add your handling code here:
         HoaDon_Dao hd = new HoaDon_Dao();
+        home.setIndex(0);
         dispose();
+        //jTabbedPane.setSelectedIndex(0);
     }//GEN-LAST:event_Bt_HoanTatActionPerformed
 
     /**

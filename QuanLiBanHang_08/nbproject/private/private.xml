@@ -5,9 +5,12 @@
         <group>
             <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyTaiKhoan/QuanLyTaiKhoan.java</file>
             <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHang/QuanLyHoaDon.java</file>
+            <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHangHelper/OracleJDBCConnection.java</file>
+            <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHang/BaoCao.java</file>
             <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/DangNhap_Frame/DangNhapFrame.java</file>
             <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHang/QuanLyKhachHang.java</file>
-            <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/main/main.java</file>
+            <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHang/BanHang.java</file>
+            <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHangModel/NhanVien.java</file>
             <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHang/QuanLyNhanVien.java</file>
             <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/QuanLyBanHang/QuanLySanPham.java</file>
             <file>file:/E:/UIT/Nam2/LapTrinhJava/DoAn/QuanLiBanHang_BanHoanChinh/QuanLiBanHang_08/src/TrangChu/home.java</file>
