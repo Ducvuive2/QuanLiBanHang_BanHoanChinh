@@ -345,6 +345,10 @@ begin
     return check1;
 end;
 
+
+commit;
+
+
 declare 
 n int;
 begin
@@ -357,7 +361,7 @@ end;
 
 
 ------------------Tang tu dong tong gia hoa don----------------
-set serveroutput on;
+/*set serveroutput on;
 create or replace trigger update_tonghoadon 
 after insert on CTHD
 for each row 
@@ -377,16 +381,21 @@ begin
     set hoadon.trigia =tonggiatri+gia1*:new.sl
     where hoadon.sohd=:new.sohd;
     dbms_output.put_line('Cap nhat tri gia thanh cong');
-end;
+end;*/
 
-
+/*
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'BC02', 2);
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'ST10', 2);
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'ST04', 1);
 INSERT INTO CTHD (SOHD, MASP, SL) VALUES (1006, 'ST05', 1);
-commit;
+commit;*/
+
+
+
+
+
 ------------------So dien thoai phai 10 so va bat dau bang so 0 ----------------
-set serveroutput on;
+/*set serveroutput on;
 create or replace function Check_SDT(sdt in varchar2) return number is
  v_num number;
 begin
@@ -401,14 +410,6 @@ begin
 end;
  commit;
  
- create or replace function Check_SDT1(i_val in varchar2) return number is
- v_num number;
-begin
- begin
-   if(LENGTH(TRIM(TRANSLATE(string1, ' +-.0123456789', ' ')))!=NULL)then return 0;
-   else return 1;
-   end if;
-end;
 
 declare
 n varchar2(255);
@@ -428,11 +429,38 @@ DELETE FROM khachhang where makh='KH14';
 INSERT INTO KHACHHANG  VALUES ('KH14', 'Nguyen Van A', '731, Tran Hung Dao, Q5, TPHCM', '08888888', '22/10/1960', 13060000, '22/07/2006');
 select * from khachhang;
 
-
+*/
 
 /*===================TRIGGER============================*/
-/*==============TRIGGER_CHECK_NGDK_NGHD=================*/
 
+/*==============Xoa_Hoa_Don=================*/
+create or replace procedure xoa_hoa_don (v_makh hoadon.makh%type)
+is
+    cursor hd_cur is select sohd from hoadon where makh=v_makh;
+    v_sohd hoadon.sohd%type;
+begin
+    open hd_cur;
+    loop
+         fetch hd_cur into v_sohd;
+         exit when hd_cur%notfound;
+         if(v_sohd is not null) then
+            delete cthd where sohd = v_sohd;
+        end if;
+    end loop;
+    close hd_cur;
+    
+    delete hoadon
+    where makh=v_makh;
+    exception
+        when no_data_found then
+              delete hoadon
+              where makh=v_makh;
+end;
+
+
+/*===================TRIGGER=======================*/
+
+/*=================== CHECK_NGDK_NGHD =====================*/
 create or replace TRIGGER CHECK_NGDK_NGHD BEFORE INSERT OR UPDATE OF NGHD  ON HOADON
 FOR EACH ROW
 DECLARE
@@ -448,7 +476,8 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
         END IF; 
 END;
-/*==============TRIGGER_CHECK_NGSINH_NGAYDK=================*/
+
+/*===================  CHECK_NGSINH_NGAYDK =====================*/
 create or replace TRIGGER CHECK_NGSINH_NGAYDK BEFORE  INSERT OR UPDATE OF NGDK, NGSINH
 ON KHACHHANG
 FOR EACH ROW
@@ -459,7 +488,34 @@ BEGIN
    DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
     END IF; 
 END;
-/*==============UPDATE_DOANHSO=================*/
+
+/*=================== check_sdt_insert_or_update_kh =====================*/
+create or replace trigger check_sdt_insert_or_update_kh before insert or update of sodt on khachhang
+for each row
+
+begin
+        if (length(:new.sodt) = 10 and (REGEXP_LIKE(:new.sodt, '^[[:digit:]]+$')  = true )) then
+                dbms_output.put_line('them thanh cong');
+        else 
+                RAISE_APPLICATION_ERROR(-20000,'so dien thoai khong hop le, vui long nhap lai') ;
+        end if;    
+end;
+
+/*=================== check_sdt_insert_or_update_NV =====================*/
+
+create or replace trigger check_sdt_insert_or_update_nv before insert or update of sodt on nhanvien
+for each row
+
+begin
+        if (length(:new.sodt) = 10 and (REGEXP_LIKE(:new.sodt, '^[[:digit:]]+$')  = true )) then
+                dbms_output.put_line('them thanh cong');
+        else 
+                RAISE_APPLICATION_ERROR(-20000,'so dien thoai khong hop le, vui long nhap lai') ;
+        end if;    
+end;
+/*=================== DOANHSO =====================*/
+/*=================== CHECK_DOANHSO =====================*/
+
 CREATE OR REPLACE TRIGGER CHECK_DOANHSO BEFORE INSERT  ON HOADON
 FOR EACH ROW
 BEGIN
@@ -470,7 +526,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
 END;
 
-/*==============KIEMTRA_DOANHSO=================*/
+/*============== KIEMTRA_DOANHSO_UP ================*/
 CREATE OR REPLACE TRIGGER CHECK_DOANHSO_up BEFORE update of trigia  ON HOADON
 FOR EACH ROW
 declare 
@@ -481,4 +537,71 @@ BEGIN
     WHERE MAKH = :NEW.MAKH;
     DBMS_OUTPUT.PUT_LINE('Da them thanh cong');
     
+END
+
+/*============== KIEMTRA_DOANHSO_DELE ================*/
+CREATE OR REPLACE TRIGGER CHECK_DOANHSO_DELE BEFORE DELETE ON HOADON
+FOR EACH ROW
+BEGIN
+
+    UPDATE KHACHHANG
+    SET DOANHSO = DOANHSO - :OLD.TRIGIA
+    WHERE MAKH = :OLD.MAKH;
+    DBMS_OUTPUT.PUT_LINE('Da xoa thanh cong');
+    
 END;
+
+--------------------------------------------------------------------------------
+
+
+/*============== update_trigia ================*/
+create or replace trigger update_trigia before insert  on cthd
+for each row
+declare
+v_gia sanpham.gia%type;
+begin
+        select gia into v_gia
+        from sanpham
+        where masp = :new.masp;
+        
+        update hoadon
+        set trigia = trigia + :new.sl*v_gia
+        where sohd = :new.sohd;
+        
+        dbms_output.put_line('Da them thanh cong');
+end;
+
+
+/*============== update_trigia_up ================*/
+create or replace trigger update_trigia_up before update of sl  on cthd
+for each row
+declare
+v_gia sanpham.gia%type;
+begin
+        select gia into v_gia
+        from sanpham
+        where masp = :new.masp;
+        
+        update hoadon
+        set trigia = trigia - :old.sl*v_gia + :new.sl*v_gia
+        where sohd = :new.sohd;
+        
+        dbms_output.put_line('Da them thanh cong');
+end;
+/*============== update_trigia_dele ================*/
+
+create or replace trigger update_trigia_DELE before DELETE on cthd
+for each row
+declare
+v_gia sanpham.gia%type;
+begin
+        select gia into v_gia
+        from sanpham
+        where masp = :OLD.masp;
+        
+        update hoadon
+        set trigia = trigia - :OLD.sl*v_gia
+        where sohd = :OLD.sohd;
+        
+        dbms_output.put_line('Da xoa thanh cong');
+end;
