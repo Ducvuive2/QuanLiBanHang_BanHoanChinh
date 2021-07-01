@@ -8,13 +8,13 @@ package QuanLyBanHang;
 import QuanLyBanHangHelper.OracleJDBCConnection;
 import java.sql.Connection;
 import java.util.HashMap;
-//import net.sf.jasperreports.engine.JasperCompileManager;
-//import net.sf.jasperreports.engine.JasperFillManager;
-//import net.sf.jasperreports.engine.JasperPrint;
-//import net.sf.jasperreports.engine.JasperReport;
-//import net.sf.jasperreports.engine.design.JasperDesign;
-//import net.sf.jasperreports.engine.xml.JRXmlLoader;
-//import net.sf.jasperreports.view.JasperViewer;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -43,9 +43,9 @@ public class BaoCao extends javax.swing.JFrame {
         box_thongkethang = new javax.swing.JComboBox<>();
         jPanel10 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
-        doanhthungay = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        topphim = new javax.swing.JPanel();
+        Top5_BanDuoc = new javax.swing.JPanel();
+        Top5BanDuoc = new javax.swing.JLabel();
+        DoanhThuTheoNam = new javax.swing.JPanel();
         jLabel55 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -53,10 +53,10 @@ public class BaoCao extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         box_thongkenam.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        box_thongkenam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100" }));
+        box_thongkenam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037", "2038", "2039", "2040", "2041", "2042", "2043", "2044", "2045", "2046", "2047", "2048", "2049", "2050", "2051", "2052", "2053", "2054", "2055", "2056", "2057", "2058", "2059", "2060", "2061", "2062", "2063", "2064", "2065", "2066", "2067", "2068", "2069", "2070", "2071", "2072", "2073", "2074", "2075", "2076", "2077", "2078", "2079", "2080", "2081", "2082", "2083", "2084", "2085", "2086", "2087", "2088", "2089", "2090", "2091", "2092", "2093", "2094", "2095", "2096", "2097", "2098", "2099", "2100" }));
 
         box_thongkethang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        box_thongkethang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6", "7" }));
+        box_thongkethang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         jPanel10.setBackground(new java.awt.Color(255, 204, 102));
 
@@ -83,42 +83,42 @@ public class BaoCao extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
-        doanhthungay.setBackground(new java.awt.Color(255, 204, 102));
-        doanhthungay.addMouseListener(new java.awt.event.MouseAdapter() {
+        Top5_BanDuoc.setBackground(new java.awt.Color(255, 204, 102));
+        Top5_BanDuoc.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                doanhthungayMouseClicked(evt);
+                Top5_BanDuocMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                doanhthungayMouseEntered(evt);
+                Top5_BanDuocMouseEntered(evt);
             }
         });
 
-        jLabel20.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(255, 102, 51));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("Thống kê sản phẩm bán được theo tháng ");
+        Top5BanDuoc.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Top5BanDuoc.setForeground(new java.awt.Color(255, 102, 51));
+        Top5BanDuoc.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Top5BanDuoc.setText("Thống kê sản phẩm bán được theo tháng ");
 
-        javax.swing.GroupLayout doanhthungayLayout = new javax.swing.GroupLayout(doanhthungay);
-        doanhthungay.setLayout(doanhthungayLayout);
-        doanhthungayLayout.setHorizontalGroup(
-            doanhthungayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, doanhthungayLayout.createSequentialGroup()
+        javax.swing.GroupLayout Top5_BanDuocLayout = new javax.swing.GroupLayout(Top5_BanDuoc);
+        Top5_BanDuoc.setLayout(Top5_BanDuocLayout);
+        Top5_BanDuocLayout.setHorizontalGroup(
+            Top5_BanDuocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Top5_BanDuocLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel20)
+                .addComponent(Top5BanDuoc)
                 .addGap(21, 21, 21))
         );
-        doanhthungayLayout.setVerticalGroup(
-            doanhthungayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(doanhthungayLayout.createSequentialGroup()
+        Top5_BanDuocLayout.setVerticalGroup(
+            Top5_BanDuocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Top5_BanDuocLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Top5BanDuoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        topphim.setBackground(new java.awt.Color(255, 204, 102));
-        topphim.addMouseListener(new java.awt.event.MouseAdapter() {
+        DoanhThuTheoNam.setBackground(new java.awt.Color(255, 204, 102));
+        DoanhThuTheoNam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                topphimMouseClicked(evt);
+                DoanhThuTheoNamMouseClicked(evt);
             }
         });
 
@@ -126,19 +126,24 @@ public class BaoCao extends javax.swing.JFrame {
         jLabel55.setForeground(new java.awt.Color(255, 102, 51));
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel55.setText("Doanh Thu Theo Năm");
+        jLabel55.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel55MouseClicked(evt);
+            }
+        });
 
-        javax.swing.GroupLayout topphimLayout = new javax.swing.GroupLayout(topphim);
-        topphim.setLayout(topphimLayout);
-        topphimLayout.setHorizontalGroup(
-            topphimLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topphimLayout.createSequentialGroup()
+        javax.swing.GroupLayout DoanhThuTheoNamLayout = new javax.swing.GroupLayout(DoanhThuTheoNam);
+        DoanhThuTheoNam.setLayout(DoanhThuTheoNamLayout);
+        DoanhThuTheoNamLayout.setHorizontalGroup(
+            DoanhThuTheoNamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DoanhThuTheoNamLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel55, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
-        topphimLayout.setVerticalGroup(
-            topphimLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topphimLayout.createSequentialGroup()
+        DoanhThuTheoNamLayout.setVerticalGroup(
+            DoanhThuTheoNamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DoanhThuTheoNamLayout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(jLabel55)
                 .addGap(23, 23, 23))
@@ -169,9 +174,9 @@ public class BaoCao extends javax.swing.JFrame {
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel_baocaoLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(topphim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DoanhThuTheoNam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
-                        .addComponent(doanhthungay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(Top5_BanDuoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panel_baocaoLayout.setVerticalGroup(
@@ -187,8 +192,8 @@ public class BaoCao extends javax.swing.JFrame {
                     .addComponent(box_thongkenam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addGroup(panel_baocaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(topphim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(doanhthungay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DoanhThuTheoNam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Top5_BanDuoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(110, 110, 110))
         );
 
@@ -206,7 +211,7 @@ public class BaoCao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void doanhthungayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doanhthungayMouseClicked
+    private void Top5_BanDuocMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Top5_BanDuocMouseClicked
          String thang = box_thongkethang.getSelectedItem().toString();
         String nam = box_thongkenam.getSelectedItem().toString();
         HashMap hashmap = new HashMap();
@@ -214,7 +219,7 @@ public class BaoCao extends javax.swing.JFrame {
         hashmap.put("Nam", nam);
         try {
             Connection con = OracleJDBCConnection.getJDBCConnection();
-            String dir = "F:\\Java Swing Root(main)\\Ontap\\src\\report\\report\\ThongKeDoanhThu1.jrxml";
+            String dir = "E:\\UIT\\Nam2\\LapTrinhJava\\DoAn\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\report\\thang_top5nhieunhat.jrxml";
             JasperDesign jd = JRXmlLoader.load(dir);
             JasperReport jr = JasperCompileManager.compileReport(dir);
             JasperPrint jp = JasperFillManager.fillReport(jr, hashmap,con);
@@ -222,21 +227,20 @@ public class BaoCao extends javax.swing.JFrame {
 
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_doanhthungayMouseClicked
+    }//GEN-LAST:event_Top5_BanDuocMouseClicked
 
-    private void doanhthungayMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_doanhthungayMouseEntered
+    private void Top5_BanDuocMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Top5_BanDuocMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_doanhthungayMouseEntered
+    }//GEN-LAST:event_Top5_BanDuocMouseEntered
 
-    private void topphimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topphimMouseClicked
-        String thang = box_thongkethang.getSelectedItem().toString();
-        String nam = box_thongkenam.getSelectedItem().toString();
+    private void DoanhThuTheoNamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DoanhThuTheoNamMouseClicked
+
+        int nam = Integer.parseInt(box_thongkenam.getSelectedItem().toString());
         HashMap hashmap = new HashMap();
-        hashmap.put("Thang", thang);
-        hashmap.put("Nam", nam);
+        hashmap.put("nam", nam);
         try {
             Connection con = OracleJDBCConnection.getJDBCConnection();
-            String dir = "F:\\Java Swing Root(main)\\Ontap\\src\\report\\report\\TopPhimTheoThang.jrxml";
+            String dir = "E:\\UIT\\Nam2\\LapTrinhJava\\DoAn\\QuanLiBanHang_BanHoanChinh\\QuanLiBanHang_08\\src\\report\\ThongKeDoanhThu.jrxml";
             JasperDesign jd = JRXmlLoader.load(dir);
             JasperReport jr = JasperCompileManager.compileReport(dir);
             JasperPrint jp = JasperFillManager.fillReport(jr, hashmap,con);
@@ -244,7 +248,11 @@ public class BaoCao extends javax.swing.JFrame {
             
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_topphimMouseClicked
+    }//GEN-LAST:event_DoanhThuTheoNamMouseClicked
+
+    private void jLabel55MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel55MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel55MouseClicked
 
     /**
      * @param args the command line arguments
@@ -263,13 +271,13 @@ public class BaoCao extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaoCao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaoCao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaoCao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BaoCaoDoanhThu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BaoCao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -282,16 +290,16 @@ public class BaoCao extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel DoanhThuTheoNam;
+    private javax.swing.JLabel Top5BanDuoc;
+    private javax.swing.JPanel Top5_BanDuoc;
     private javax.swing.JComboBox<String> box_thongkenam;
     private javax.swing.JComboBox<String> box_thongkethang;
-    private javax.swing.JPanel doanhthungay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel panel_baocao;
-    private javax.swing.JPanel topphim;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoLuong" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="120b8a80-265e-49cc-aa27-4d53b4d1218c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NAM" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM
+(
+SELECT extract(year from nghd) NAM,S.MASP,TENSP,SUM(C.SL)SO_LUONG
+FROM SANPHAM S, CTHD C, HOADON H
+WHERE S.MASP=C.MASP AND H.SOHD=C.SOHD AND extract(year from nghd)=$P{NAM}
+GROUP BY extract(year from nghd), S.MASP,TENSP
+ORDER BY extract(year from nghd),SUM(SL) DESC
+)
+WHERE ROWNUM <= 5]]>
+	</queryString>
+	<field name="NAM" class="java.math.BigDecimal"/>
+	<field name="MASP" class="java.lang.String"/>
+	<field name="TENSP" class="java.lang.String"/>
+	<field name="SO_LUONG" class="java.math.BigDecimal"/>
+	<variable name="SL_1" class="java.math.BigDecimal" resetType="Group" resetGroup="MonthOfYear" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<group name="MonthOfYear" isStartNewPage="true">
+		<groupExpression><![CDATA[]]></groupExpression>
+		<groupHeader>
+			<band height="50">
+				<image>
+					<reportElement x="0" y="0" width="555" height="50" uuid="1fa2967c-912c-4990-b3aa-ae713a545b5a"/>
+					<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\pink3.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="77" y="0" width="100" height="20" uuid="e7fc1508-a423-437c-8a13-1f77dabac4da"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true" isItalic="false"/>
+					</textElement>
+					<text><![CDATA[Mã sản phẩm]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="213" y="0" width="100" height="20" uuid="2741ab81-fb74-42fb-9f06-0067b9d00e0f"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tên sản phẩm]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="352" y="0" width="100" height="20" uuid="5e2dffda-0e83-48c3-a57b-3458899611df"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Số lượng]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band height="802" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="748" height="802" uuid="449776b4-2332-45e7-a3fc-a998906abcb5"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\blue1.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="85" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="85" uuid="6c02f1fe-d289-4c72-85ba-fe4a428c7f0a"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\Blue.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="113" y="0" width="352" height="23" forecolor="#FF3333" uuid="2ea362ec-ccab-45f8-8254-b32f851fe4b4"/>
+				<textElement>
+					<font fontName="SansSerif" size="18"/>
+				</textElement>
+				<text><![CDATA[Thống kê top 5 sản phẩm bán nhiều nhất trong ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="235" y="20" width="51" height="36" forecolor="#FF0000" uuid="39c4cf9b-1365-4a13-8c3f-43488998a8ef"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[năm]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="286" y="20" width="42" height="36" forecolor="#FF0000" uuid="ac89adca-6811-43bc-a81c-8f373922badf"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAM}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="64" height="64" uuid="7a6d28f8-1681-4790-b7aa-55755b13139b"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\analytics_documents_report_statistics_icon_127215.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="491" y="0" width="64" height="64" uuid="49bcd992-9add-4927-a7ef-6d73fb728a25"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\report_blue.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="77" y="0" width="100" height="20" uuid="ea5986bd-39f3-4feb-a517-68490cf194b2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MASP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="213" y="0" width="100" height="20" uuid="9829f632-c85c-41a7-9545-f514b414e1a0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TENSP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="0" width="100" height="20" uuid="5bc8d5bd-937f-49f4-8ec5-7feeb8077d3f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SO_LUONG}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="551" height="1" forecolor="#009966" uuid="a8343100-9cd9-4758-9499-862f9057306c"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="101" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="96" height="96" uuid="8c93c8f6-e5d0-4c5b-a8c0-aefaf07587ad"/>
+				<imageExpression><![CDATA["E:\\UIT\\Nam2\\LapTrinhJava\\Report\\report-Linh\\report\\4230540-analysis-graph-report_115003.png"]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="1" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>
