@@ -608,6 +608,10 @@ public class QuanLyKhachHang extends javax.swing.JFrame {
             System.err.println("Invalid string in argumment");  
         }
         catch (Exception e){
+               if(e.getMessage().contains("ORA-00001: unique constraint (QUANLYBANHANG.PK_KHACHHANG) violated"))
+          JOptionPane.showMessageDialog(null, "Mã nhân viên đã tồn tại, vui lòng nhập lại ","Lỗi", JOptionPane.WARNING_MESSAGE);
+          if(e.getMessage().contains("ORA-02290")||e.getMessage().contains("ORA-04088"))
+          JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ, vui lòng nhập lại ","Lỗi", JOptionPane.WARNING_MESSAGE);
             //JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
         }
         KhachHang_Load();

@@ -191,6 +191,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
         jToolBar1.add(jSeparator1);
 
+        jBTimKiem.setBackground(new java.awt.Color(255, 204, 204));
         jBTimKiem.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/find.png"))); // NOI18N
         jBTimKiem.setText("Tìm kiếm");
@@ -205,6 +206,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         jToolBar1.add(jBTimKiem);
         jToolBar1.add(jSeparator4);
 
+        jBCapNhat.setBackground(new java.awt.Color(255, 204, 204));
         jBCapNhat.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/edit.png"))); // NOI18N
         jBCapNhat.setText("Cập nhật");
@@ -219,6 +221,7 @@ public class QuanLyHoaDon extends javax.swing.JFrame {
         jToolBar1.add(jBCapNhat);
         jToolBar1.add(jSeparator5);
 
+        jBLamMoi.setBackground(new java.awt.Color(255, 204, 204));
         jBLamMoi.setFont(new java.awt.Font("Times New Roman", 0, 15)); // NOI18N
         jBLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/newIcon/refresh.png"))); // NOI18N
         jBLamMoi.setText("Làm mới");

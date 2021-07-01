@@ -577,30 +577,36 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         /*check sodt */
         //while(true){
            
-         String strCall = "{?=call Check_SDT(?)}";
-        CallableStatement call = conn.prepareCall(strCall);
-        call.registerOutParameter(1,java.sql.Types.NUMERIC);
-        call.setString(2,(txtSDT.getText()));
-        call.executeUpdate();; 
-        int rss= call.getInt(1);
-            System.out.println("QuanLyBanHang.QuanLyNhanVien.jBThemMoiActionPerformed()");
-        if(rss>0){
-           // break;
+//         String strCall = "{?=call Check_SDT(?)}";
+//        CallableStatement call = conn.prepareCall(strCall);
+//        call.registerOutParameter(1,java.sql.Types.NUMERIC);
+//        call.setString(2,(txtSDT.getText()));
+//        call.executeUpdate();; 
+//        int rss= call.getInt(1);
+//            System.out.println("QuanLyBanHang.QuanLyNhanVien.jBThemMoiActionPerformed()");
+//        if(rss>0){
+//           // break;
            NhanVienDao dao = new NhanVienDao();
            dao.insert(NV);    
-           JOptionPane.showMessageDialog(this, "Nhân viên được thêm vào thành công!");
-        }
-        else{
-        JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ!");
-        txtSDT.setText("");
+//           JOptionPane.showMessageDialog(this, "Nhân viên được thêm vào thành công!");
+//        }
+//        else{
+//        JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ!");
+//        txtSDT.setText("");
         //break;
-        }
+        //}
         //}
         /**/
         
       } catch (Exception e){
-          JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-      }   
+         // JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+          if(e.getMessage().contains("ORA-00001: unique constraint (QUANLYBANHANG.PK_NHANVIEN) violated"))
+          JOptionPane.showMessageDialog(null, "Mã nhân viên đã tồn tại, vui lòng nhập lại ","Lỗi", JOptionPane.WARNING_MESSAGE);
+          if(e.getMessage().contains("ORA-02290: check constraint (QUANLYBANHANG.CHECK_SDT_NV) violated")||e.getMessage().contains("ORA-04088: error during execution of trigger 'QUANLYBANHANG.CHECK_SDT_INSERT_OR_UPDATE_NV"))
+          JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ, vui lòng nhập lại ","Lỗi", JOptionPane.WARNING_MESSAGE);
+         // if(e.contains    "ORA-04088: error during execution of trigger 'LINHK.CHECK_SDT_INSERT_KH'")
+      }  
+      
     NhanVien_Load();   
     }//GEN-LAST:event_jBThemMoiActionPerformed
 

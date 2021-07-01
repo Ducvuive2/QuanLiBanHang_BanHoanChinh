@@ -22,7 +22,7 @@ public class DangNhapFrame extends javax.swing.JFrame {
     ResultSet rs;
    PreparedStatement pst;
    
-   
+   //public J
     /**
      * Creates new form DangNhapFrame
      */

@@ -153,20 +153,27 @@ order by extract (month from nghd)]]>
 		</band>
 	</columnFooter>
 	<summary>
-		<band height="42" splitType="Stretch">
+		<band height="66" splitType="Stretch">
 			<staticText>
-				<reportElement x="136" y="11" width="185" height="31" uuid="a4915ddd-9cf2-45c4-870e-9309835c6125"/>
+				<reportElement x="31" y="22" width="407" height="31" uuid="a4915ddd-9cf2-45c4-870e-9309835c6125"/>
 				<textElement>
 					<font size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Tổng doanh thu trong năm:]]></text>
+				<text><![CDATA[Tổng doanh thu của năm          :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="406" y="9" width="100" height="31" uuid="81f32687-c9b9-45f7-9f19-2755c76f5443"/>
+				<reportElement x="438" y="22" width="100" height="31" uuid="81f32687-c9b9-45f7-9f19-2755c76f5443"/>
 				<textElement>
 					<font size="24" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{TRIGIA_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="325" y="22" width="100" height="31" forecolor="#000000" uuid="9b51b2d5-2bd4-4592-bf3c-d64d73511a86"/>
+				<textElement>
+					<font fontName="SansSerif" size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nam}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
