@@ -245,7 +245,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="X&#xc1;C NH&#x1eac;N GI&#x1ece; H&#xc0;NG"/>
+                <Property name="text" type="java.lang.String" value="THANH TO&#xc1;N GI&#x1ece; H&#xc0;NG"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXNActionPerformed"/>

@@ -10,6 +10,7 @@ import QuanLyBanHangModel.SanPham;
 import Util.MyConvert;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -78,12 +79,10 @@ public class SanPhamFrame extends javax.swing.JFrame {
             cbChon.setBackground(new java.awt.Color(255, 255, 255));
             cbChon.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    if (cbChon.isSelected() == true) {
-                        cbChon.setSelected(false);
+                    if (cbChon.isSelected() == false) {
                         listSelectd.remove(sp);
 
                     } else {
-                        cbChon.setSelected(true);
                         listSelectd.add(sp);
                     }
 
@@ -175,6 +174,13 @@ public class SanPhamFrame extends javax.swing.JFrame {
             );
             jPanel5.add(menuItem);
         }
+        if (listSanPham.size() < 4)
+            for (int i = 0; i < 8 - listSanPham.size(); i++) {
+                JButton btnTemp = new JButton();
+                btnTemp.setBackground(Color.WHITE);
+                btnTemp.setEnabled(false);
+                jPanel5.add(btnTemp);
+            }
         jPanel5.revalidate();
         jPanel5.repaint();
     }
@@ -296,7 +302,7 @@ public class SanPhamFrame extends javax.swing.JFrame {
 
         lbDVT.setBackground(new java.awt.Color(255, 255, 255));
         lbDVT.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        lbDVT.setText("đơn vị tinh");
+        lbDVT.setText("đơn vị tính");
         lbDVT.setToolTipText("");
 
         lbNSX.setBackground(new java.awt.Color(255, 255, 255));
@@ -320,11 +326,11 @@ public class SanPhamFrame extends javax.swing.JFrame {
                                 .addComponent(lbMSP1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lbDVT, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(36, 36, 36)
                                 .addComponent(lbNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(44, 44, 44)
+                                .addGap(48, 48, 48)
                                 .addComponent(lbGIA, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(194, 194, 194))
+                                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,12 +340,9 @@ public class SanPhamFrame extends javax.swing.JFrame {
                                         .addComponent(lbMSP, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lbMSP1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(lbDVT, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lbNSX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lbGIA, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(lbGIA, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelQLSPLayout = new javax.swing.GroupLayout(jPanelQLSP);
@@ -348,10 +351,12 @@ public class SanPhamFrame extends javax.swing.JFrame {
                 jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanelQLSPLayout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addGroup(jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1)
-                                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1278, Short.MAX_VALUE)))
+                                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 1278, Short.MAX_VALUE))
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelQLSPLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1)
+                                .addContainerGap())
         );
         jPanelQLSPLayout.setVerticalGroup(
                 jPanelQLSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,7 +365,8 @@ public class SanPhamFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(78, 78, 78))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -383,12 +389,65 @@ public class SanPhamFrame extends javax.swing.JFrame {
 
     private void jBfindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfindActionPerformed
         // TODO add your handling code here:
+        XuLyThongTinSanPham child = new XuLyThongTinSanPham();
+        child.setVisible(true);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                {
+                    synchronized (threadGui) {
+                        // Pause
+                        try { //code sau khi mở lại luồng chính
+                            threadGui.wait();
+                            listSanPham = child.getSanPhamArrayList();
+                            reset();
+                        } catch (InterruptedException e) {
+                        }
+                    }
 
+                }
+            }
+
+
+        };
+
+        threadGui = new Thread(runnable);
+        child.setTimKiemNC(threadGui);
+
+        //từ đây trở lên là trước khi luồng chính bị đóng
+        threadGui.start();
 
     }//GEN-LAST:event_jBfindActionPerformed
 
     private void jBInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBInsertActionPerformed
         // TODO add your handling code here:
+        XuLyThongTinSanPham child = new XuLyThongTinSanPham();
+        child.setVisible(true);
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                {
+                    synchronized (threadGui) {
+                        // Pause
+                        try { //code sau khi mở lại luồng chính
+                            threadGui.wait();
+
+                            dataChange();
+                        } catch (InterruptedException e) {
+                        }
+                    }
+
+                }
+            }
+
+
+        };
+
+        threadGui = new Thread(runnable);
+        child.setThem(threadGui);
+
+        //từ đây trở lên là trước khi luồng chính bị đóng
+        threadGui.start();
 
     }//GEN-LAST:event_jBInsertActionPerformed
 
@@ -409,11 +468,26 @@ public class SanPhamFrame extends javax.swing.JFrame {
                     options[1]);
 
             if (result == JOptionPane.YES_OPTION) {
+                String mess="";
                 for (SanPham sp : listSelectd) {
-                    SanPhamDao.delete(sp);
-                }
-                Object[] options2 = {"Chấp nhận"};
 
+                     mess = SanPhamDao.delete(sp);
+                     if (!mess.contains("Thành công")) {
+                         Object[] options2 = {"Chấp nhận"};
+                         int result2 = JOptionPane.showOptionDialog(this,
+                                 mess,
+                                 "Thông báo",
+                                 JOptionPane.OK_OPTION,
+                                 JOptionPane.QUESTION_MESSAGE,
+                                 null,
+                                 options2,
+                                 options2[0]);
+
+                     }
+                }
+                if (mess.contains("Thành công")) {
+                    dataChange();
+                }
 
                 dataChange();
 
@@ -423,8 +497,12 @@ public class SanPhamFrame extends javax.swing.JFrame {
 
     private void jBUpDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBUpDateActionPerformed
         // TODO add your handling code here:
-        if(listSelectd.size()>1)
-        {
+        if (listSelectd.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa chọn khuyến mãi nào", "Thông tin", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        if (listSelectd.size() > 1) {
             Object[] options = {"Chấp nhận"};
             int result = JOptionPane.showOptionDialog(this,
                     "Vui lòng chọn chỉ 1 sản phẩm ",
@@ -459,7 +537,7 @@ public class SanPhamFrame extends javax.swing.JFrame {
         };
 
         threadGui = new Thread(runnable);
-        child.setSua(threadGui,listSelectd.get(0));
+        child.setSua(threadGui, listSelectd.get(0));
 
         //từ đây trở lên là trước khi luồng chính bị đóng
         threadGui.start();

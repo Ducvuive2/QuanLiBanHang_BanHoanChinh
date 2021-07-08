@@ -15,6 +15,7 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,9 +29,9 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
     private Thread threadNhan;
     private SanPham sanPham;
     private Integer isInstance;
+    private ArrayList<SanPham> sanPhamArrayList= new ArrayList<>();
     public XuLyThongTinSanPham() {
         initComponents();
-        txtMa.setEnabled(false);
     }
     @Override
     public void dispose() {
@@ -39,8 +40,13 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         }
         super.dispose();
     }
+    public ArrayList<SanPham> getSanPhamArrayList()
+    {
+        return sanPhamArrayList;
+    }
     private void creat() {
         sanPham = new SanPham();
+        sanPham.setMASP(txtMa.getText());
         sanPham.setTENSP(txtTen.getText());
         sanPham.setDVT(cbbDVT.getSelectedItem().toString());
         sanPham.setNUOCSX(cbbNSX.getSelectedItem().toString());
@@ -51,8 +57,8 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         txtMa.setText(sanPham.getMASP());
         txtTen.setText(sanPham.getTENSP());
         txtGia.setText(MyConvert.parseIntToString(sanPham.getGIA()));
-        cbbDVT.setSelectedItem(sanPham.getDVT());
-        cbbNSX.setSelectedItem(sanPham.getNUOCSX());
+        if (cbbDVT.getSelectedIndex()!=0)cbbDVT.setSelectedItem(sanPham.getDVT());
+        if (cbbNSX.getSelectedIndex()!=0) cbbNSX.setSelectedItem(sanPham.getNUOCSX());
     }
     private void themAnh()
     {
@@ -95,6 +101,8 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         isInstance = MyInstance.IS_FIND;
         threadNhan = a;
         txtMa.setEnabled(true);
+        creat();
+
     }
 
     /**
@@ -121,7 +129,7 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         btnCT = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtMa = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lbAnh = new javax.swing.JLabel();
         btnChonAnh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -213,7 +221,7 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel2.setText("Mã sản phẩm");
 
-        jLabel7.setBackground(new java.awt.Color(153, 153, 0));
+        lbAnh.setBackground(new java.awt.Color(153, 153, 0));
 
         btnChonAnh.setBackground(new java.awt.Color(255, 204, 204));
         btnChonAnh.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
@@ -239,7 +247,7 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(lbAnh, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(btnChonAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMa))
@@ -266,7 +274,7 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(btnChonAnh)
                         .addGap(18, 18, 18)
@@ -328,7 +336,7 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
             break;
             case MyInstance.IS_FIND: {
 
-                //sanPham = SanPhamDao.queryByNV(nv);
+                sanPhamArrayList= SanPhamDao.find(sanPham);
             }
             break;
 
@@ -347,12 +355,12 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
         BufferedImage bImage = null;
         try {
-            File initialImage = new File("C://Users/Rou/Desktop/image.jpg");
-            bImage = ImageIO.read(initialImage);
 
-            ImageIO.write(bImage, "gif", new File("C://Users/Rou/Desktop/image.gif"));
-            ImageIO.write(bImage, "jpg", new File("C://Users/Rou/Desktop/image.png"));
-            ImageIO.write(bImage, "bmp", new File("C://Users/Rou/Desktop/image.bmp"));
+            bImage = ImageIO.read(SwingTester.getImage(this));
+
+
+            ImageIO.write(bImage, "png", new File("C:\\Users\\khanh\\Desktop\\QuanLiBanHang_BanHoanChinh-main\\QuanLiBanHang_08\\src\\anhsanpham\\image.png"));
+
 
         } catch (IOException e) {
             System.out.println("Exception occured :" + e.getMessage());
@@ -407,9 +415,9 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lbAnh;
     private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtMa;
     private javax.swing.JTextField txtTen;

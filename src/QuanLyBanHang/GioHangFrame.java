@@ -5,9 +5,15 @@
  */
 package QuanLyBanHang;
 
+import QuanLyBanHangDao.HoaDon_Dao;
 import QuanLyBanHangModel.GioHang;
+import QuanLyBanHangModel.KhachHang;
+import QuanLyBanHangModel.NhanVien;
 import QuanLyBanHangModel.SanPham;
+import TrangChu.home;
+import Util.MyConvert;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +24,8 @@ import java.util.stream.Collectors;
 public class GioHangFrame extends javax.swing.JFrame {
     private ArrayList<GioHang> listGioHang = new ArrayList<>();
     private Thread threadNhan;
-
+    private KhachHang khachhang;
+    private NhanVien nhanvien;
 
     /**
      * Creates new form GioHang
@@ -152,6 +159,7 @@ public class GioHangFrame extends javax.swing.JFrame {
                         List<GioHang> match = listGioHang.stream().filter(it -> it.equals(gh)).collect(Collectors.toList());
                         match.get(0).setSoluong(gh.getSoluong() - 1);
                         lbSoLuong.setText(match.get(0).getSoluong().toString());
+                        lbTien.setText(MyConvert.parseIntToString(match.get(0).getSoluong()*match.get(0).getSanpham().getGIA())+" đ");
                         initTongTien();
                     }
                 }
@@ -168,6 +176,7 @@ public class GioHangFrame extends javax.swing.JFrame {
                     List<GioHang> match = listGioHang.stream().filter(it -> it.equals(gh)).collect(Collectors.toList());
                     match.get(0).setSoluong(gh.getSoluong() + 1);
                     lbSoLuong.setText(match.get(0).getSoluong().toString());
+                    lbTien.setText(MyConvert.parseIntToString(match.get(0).getSoluong()*match.get(0).getSanpham().getGIA())+" đ");
                     initTongTien();
                 }
             });
@@ -323,7 +332,7 @@ public class GioHangFrame extends javax.swing.JFrame {
         btnXN.setBackground(new java.awt.Color(255, 153, 102));
         btnXN.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnXN.setForeground(new java.awt.Color(255, 255, 255));
-        btnXN.setText("XÁC NHẬN GIỎ HÀNG");
+        btnXN.setText("THANH TOÁN GIỎ HÀNG");
         btnXN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXNActionPerformed(evt);
@@ -471,6 +480,21 @@ public class GioHangFrame extends javax.swing.JFrame {
 
     private void btnXNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXNActionPerformed
         // TODO add your handling code here:
+
+        String mess =  HoaDon_Dao.muaHang(listGioHang,khachhang, home.getNhanVien());
+        Object[] options2 = {"Chấp nhận"};
+        int result2 = JOptionPane.showOptionDialog(this,
+                mess,
+                "Thông báo",
+                JOptionPane.OK_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options2,
+                options2[0]);
+        if (mess.contains("Thành công")) {
+            listGioHang.removeAll(listGioHang);
+            khachhang=null;
+        }
         dispose();
     }//GEN-LAST:event_btnXNActionPerformed
 
@@ -480,10 +504,10 @@ public class GioHangFrame extends javax.swing.JFrame {
         reset();
     }//GEN-LAST:event_btnXTCActionPerformed
 
-    public void setThread(Thread thread, ArrayList<GioHang> list) {
+    public void setThread(Thread thread, ArrayList<GioHang> list, KhachHang kh) {
         threadNhan = thread;
         listGioHang = list;
-
+        khachhang=kh;
         reset();
     }
 

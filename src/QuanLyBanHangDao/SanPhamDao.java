@@ -18,6 +18,7 @@ import java.util.stream.Collectors;
 
 import Database.Database;
 import QuanLyBanHangModel.SanPham;
+import Util.MyConvert;
 
 /**
  * @author Nguyen Linh
@@ -45,16 +46,47 @@ public class SanPhamDao {
         return true;
     }
 
-    public SanPham find(String MASP) throws Exception {
-        String SQL = "select * from SANPHAM where MaSP =?";
+    public static ArrayList<SanPham> find(SanPham sp) {
 
-        try (
-                Connection conn = Database.getConnection();
-                PreparedStatement ps = conn.prepareStatement(SQL);
-        ) {
-            ps.setString(1, MASP);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+        boolean preNode = false;
+        ArrayList<SanPham> list = new ArrayList<>();
+        String sqlQuery = " select * from SANPHAM where ";
+
+        if (sp.getMASP() != null && !sp.getMASP().isBlank()) {
+            sqlQuery += "MASP LIKE ('%'||'" + sp.getMASP() + "'||'%') ";
+            preNode = true;
+        }
+        if (sp.getTENSP() != null && !sp.getTENSP().isEmpty()) {
+            if (preNode == true) sqlQuery += " AND ";
+            sqlQuery += " TENSP LIKE ('%'||'" + sp.getTENSP() + "'||'%') ";
+            preNode = true;
+        }
+        if (sp.getDVT() != null && !sp.getDVT().isEmpty()) {
+            if (preNode == true) sqlQuery += " AND ";
+            sqlQuery += " DVT LIKE ('%'||'" + sp.getDVT() + "'||'%') ";
+            preNode = true;
+        }
+        if (sp.getNUOCSX() != null && !sp.getNUOCSX().isEmpty()) {
+            if (preNode == true) sqlQuery += " AND ";
+            sqlQuery += " NUOCSX LIKE ('%'||'" + sp.getNUOCSX() + "'||'%') ";
+            preNode = true;
+        }
+
+
+        if (sp.getGIA() != null) {
+            if (preNode == true) sqlQuery += " AND ";
+            sqlQuery += " GIA = " + MyConvert.parseIntToString(sp.getGIA()) + "  ";
+            preNode = true;
+        }
+
+        sqlQuery += " ORDER BY MASP";
+
+        try {
+            PreparedStatement preparedStatementShow = Database.getConnection().prepareStatement(sqlQuery);
+
+            ResultSet rs = preparedStatementShow.executeQuery();
+            while (rs.next()) {
+
                 SanPham SP = new SanPham();
                 SP.setMASP(rs.getString("MASP"));
                 SP.setTENSP(rs.getString("TENSP"));
@@ -62,11 +94,16 @@ public class SanPhamDao {
                 SP.setNUOCSX(rs.getString("NuocSX"));
                 SP.setGIA(rs.getInt("Gia"));
 
-                return SP;
-            }
 
-            return null;
+                list.add(SP);
+
+            }
+        } catch (SQLException e) {
         }
+
+
+        return list;
+
     }
 
     public ArrayList<SanPham> queryBySP(SanPham sp) {
@@ -261,18 +298,19 @@ public class SanPhamDao {
         return true;
     }
 
-    public static boolean delete(SanPham sanPham) {
+    public static String delete(SanPham sanPham) {
         String SQL = "delete from SANPHAM where masp=?";
         try {
             Connection conn = Database.getConnection();
             PreparedStatement ps = conn.prepareStatement(SQL);
 
             ps.setString(1, sanPham.getMASP());
-            return ps.executeUpdate() > 0;
+            ps.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+            if (throwables.toString().contains("ORA-02292")) return "Không thể xoá vì có dữ liệu khác đang liên kết \n (Ràng buộc khoá ngoại)";
         }
-        return true;
+        return "Thành công";
 
     }
 }
