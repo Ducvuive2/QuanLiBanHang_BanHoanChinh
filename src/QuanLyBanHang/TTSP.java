@@ -10,7 +10,11 @@ import QuanLyBanHangModel.SanPham;
 import Util.MyConvert;
 import Util.MyInstance;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @author khanh
@@ -58,7 +62,7 @@ public class TTSP extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtTENSP = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelTTDV.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -191,27 +195,7 @@ public class TTSP extends javax.swing.JFrame {
 
 
         switch (isInstance) {
-               /* case 1: {
-                    creatDV();
-                    DVDAO.insertDatabase(dv);
-                }
-                break;
-                case 2: {
-                    //DVDAO.(dsp);
-                }
-                break;
-                case 3: {
-                    creatDV();
-                    DVDAO.updateDatabase(dv);
-                }
-                break;
-                case 4: {
-                    creatDV();
-                    listDV=DVDAO.queryByDichVu(dv);
-                }
-                break;
 
-            }*/
             case MyInstance.IS_DAT: {
                 isDat = 1;
 
@@ -243,6 +227,13 @@ public class TTSP extends javax.swing.JFrame {
         txtGDV.setText(MyConvert.parseIntToString(sanpham.getGIA()));
         txtNSX.setText(sanpham.getNUOCSX());
         isInstance = MyInstance.IS_DAT;
+        BufferedImage bImage = null;
+        try {
+            bImage = ImageIO.read(new File("C:\\Users\\khanh\\Desktop\\QuanLiBanHang_BanHoanChinh-main\\QuanLiBanHang_08\\src\\anhsanpham\\"+sanPham.getMASP()+".jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        jLabel2.setIcon(new ImageIcon(bImage));
     }
 
     /**

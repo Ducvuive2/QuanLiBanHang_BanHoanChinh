@@ -93,49 +93,54 @@ public class HoaDon_Dao {
 
     public static String muaHang(ArrayList<GioHang> list, KhachHang kh, NhanVien nv) {
         CallableStatement cstmt = null;
-        Connection connection = null;
-        Integer sohd = null;
-        String SQL = " INSERT  HOADON (MAKH,MANV,NGHD,TRIGIA)VALUES (?,?,?,?)";
+        Connection connection = Database.getConnection();
+        ;
+        Integer sohd = 0;
+
+
+
+
+            try {
+                String SQL = " select sohd from HOADON where rownum = 1 order by sohd desc ";
+                PreparedStatement ps = connection.prepareStatement(SQL);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    sohd = rs.getInt("sohd");
+                    sohd++;
+                    System.out.println("sohd" + sohd);
+
+                    ps.executeQuery();
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+
+
         try {
+            String insertSQL = " INSERT INTO HOADON (SOHD, MAKH,MANV,NGHD,TRIGIA)VALUES (?,?,?,?,?)";
+            PreparedStatement ps = connection.prepareStatement(insertSQL);
+            ps.setInt(1, sohd);
 
-            Connection conn = Database.getConnection();
-            PreparedStatement ps = conn.prepareStatement(SQL);
-
-            ps.setString(1, kh.getMAKH());
-            ps.setString(2, nv.getMANV());
-            ps.setDate(3, new java.sql.Date(System.currentTimeMillis()));
+            ps.setString(2, kh == null ? null : kh.getMAKH());
+            ps.setString(3, nv.getMANV());
+            ps.setDate(4, new java.sql.Date(System.currentTimeMillis()));
             Integer trigia = list.stream()
                     .mapToInt(a -> (a.getSanpham().getGIA() * a.getSoluong()))
                     .sum();
-            ps.setInt(4, trigia);
+            ps.setInt(5, trigia);
             ps.executeUpdate();
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        try {
-
-            cstmt = connection.prepareCall("{? =CALL getSOHD}");
 
 
-            cstmt.registerOutParameter(1, Types.INTEGER);
-            cstmt.executeQuery();
-            sohd = cstmt.getInt(1);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-
-            String[] words1 = throwables.toString().split("ORA:");
-            String StrTemp1 = words1[1];
-            String[] words2 = StrTemp1.split("ORA");
-            String StrTemp2 = words2[0];
-            return StrTemp2;
-        }
-
-        SQL = " INSERT CTHD (SOHD, MASP, SL) VALUES (?,?,?)";
         try {
             for (GioHang gh : list) {
+                String cthdSQL = " INSERT CTHD (SOHD, MASP, SL) VALUES (?,?,?)";
                 Connection conn = Database.getConnection();
-                PreparedStatement ps = conn.prepareStatement(SQL);
+                PreparedStatement ps = conn.prepareStatement(cthdSQL);
 
                 ps.setInt(1, sohd);
                 ps.setString(2, gh.getSanpham().getMASP());

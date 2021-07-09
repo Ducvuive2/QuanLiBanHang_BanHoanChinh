@@ -36,8 +36,7 @@ public class SanPhamDao {
             ps.setString(2, SP.getTENSP());
             ps.setString(3, SP.getDVT());
             ps.setString(4, SP.getNUOCSX());
-            ps.setLong(5, SP.getGIA());
-
+            ps.setInt(5, SP.getGIA());
 
             return ps.executeUpdate() > 0;
         } catch (SQLException throwables) {
@@ -52,7 +51,7 @@ public class SanPhamDao {
         ArrayList<SanPham> list = new ArrayList<>();
         String sqlQuery = " select * from SANPHAM where ";
 
-        if (sp.getMASP() != null && !sp.getMASP().isBlank()) {
+        if (sp.getMASP() != null && !sp.getMASP().isEmpty()) {
             sqlQuery += "MASP LIKE ('%'||'" + sp.getMASP() + "'||'%') ";
             preNode = true;
         }
@@ -61,23 +60,24 @@ public class SanPhamDao {
             sqlQuery += " TENSP LIKE ('%'||'" + sp.getTENSP() + "'||'%') ";
             preNode = true;
         }
-        if (sp.getDVT() != null && !sp.getDVT().isEmpty()) {
+
+        if (sp.getDVT() != null && !sp.getDVT().equals("Lựa chọn")) {
             if (preNode == true) sqlQuery += " AND ";
             sqlQuery += " DVT LIKE ('%'||'" + sp.getDVT() + "'||'%') ";
             preNode = true;
         }
-        if (sp.getNUOCSX() != null && !sp.getNUOCSX().isEmpty()) {
+        if (sp.getNUOCSX() != null && !sp.getNUOCSX().equals("Lựa chọn")) {
             if (preNode == true) sqlQuery += " AND ";
             sqlQuery += " NUOCSX LIKE ('%'||'" + sp.getNUOCSX() + "'||'%') ";
             preNode = true;
         }
 
-
-        if (sp.getGIA() != null) {
+        if (sp.getGIA() != null&&sp.getGIA()!=Integer.MIN_VALUE) {
             if (preNode == true) sqlQuery += " AND ";
             sqlQuery += " GIA = " + MyConvert.parseIntToString(sp.getGIA()) + "  ";
             preNode = true;
         }
+
 
         sqlQuery += " ORDER BY MASP";
 
@@ -94,19 +94,19 @@ public class SanPhamDao {
                 SP.setNUOCSX(rs.getString("NuocSX"));
                 SP.setGIA(rs.getInt("Gia"));
 
-
                 list.add(SP);
 
             }
         } catch (SQLException e) {
         }
+        System.out.println("ketuqa:"+list.toString());
 
 
         return list;
 
     }
 
-    public ArrayList<SanPham> queryBySP(SanPham sp) {
+    public static ArrayList<SanPham> queryBySP(SanPham sp) {
 
         boolean preNode = false;
         ArrayList<SanPham> list = new ArrayList<>();
@@ -114,8 +114,8 @@ public class SanPhamDao {
                 "SELECT * from SANPHAM " +
                         "where ";
 
-        if (sp.getMASP() != null) {
-            sqlQuery += "MASP LIKE ('%'||'" + String.valueOf(sp.getMASP()) + "'||'%') ";
+        if (sp.getMASP() != null&&!sp.getMASP().isEmpty()) {
+            sqlQuery += " MASP LIKE ('%'||'" + String.valueOf(sp.getMASP()) + "'||'%') ";
             preNode = true;
         }
         if (sp.getTENSP() != null && !sp.getTENSP().isEmpty()) {
@@ -123,9 +123,21 @@ public class SanPhamDao {
             sqlQuery += " TENSP LIKE ('%'||'" + sp.getTENSP() + "'||'%') ";
             preNode = true;
         }
-        if (sp.getGIA() != null) {
+        if (!sp.getDVT().equals("Lựa chọn"))
+        {
             if (preNode == true) sqlQuery += " AND ";
-            sqlQuery += "GIA LIKE ('%'||'" + String.valueOf(sp.getMASP()) + "'||'%') ";
+            sqlQuery += " DVT LIKE ('%'||'" + sp.getDVT() + "'||'%') ";
+            preNode = true;
+        }
+        if (!sp.getNUOCSX().equals("Lựa chọn"))
+        {
+            if (preNode == true) sqlQuery += " AND ";
+            sqlQuery += " NUOCSX LIKE ('%'||'" + sp.getDVT() + "'||'%') ";
+            preNode = true;
+        }
+        if (sp.getGIA() != null&& sp.getGIA()!=Integer.MIN_VALUE) {
+            if (preNode == true) sqlQuery += " AND ";
+            sqlQuery += "GIA = " + String.valueOf(sp.getMASP()) + "  ";
             preNode = true;
         }
 
@@ -146,6 +158,7 @@ public class SanPhamDao {
             }
         } catch (SQLException e) {
         }
+        System.out.println("ketqua:"+ list.toString());
 
 
         return list;
@@ -197,7 +210,6 @@ public class SanPhamDao {
                 SP.setDVT(rs.getString("DVT"));
                 SP.setNUOCSX(rs.getString("NuocSX"));
                 SP.setGIA(rs.getInt("Gia"));
-
                 list.add(SP);
             }
         } catch (SQLException throwables) {

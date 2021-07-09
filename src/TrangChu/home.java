@@ -62,10 +62,8 @@ public class home extends javax.swing.JFrame {
         QuanLyTaiKhoan qltk=new QuanLyTaiKhoan();
 
         jPanel_ThongTinTaiKhoan=qltk.getJPanel_QuanLyTaiKhoan();
-        initComponents();
-        initShow();
-        setVisible(true);
-    /*    DangNhapFrame child = new DangNhapFrame();
+
+      DangNhapFrame child = new DangNhapFrame();
         child.setVisible(true);
         Runnable runnable = new Runnable() {
             @Override
@@ -82,6 +80,7 @@ public class home extends javax.swing.JFrame {
 
                             initComponents();
                             initShow();
+
                             // VIET 1 CAI IF O NGOAI NAY CHECK THU KHANH
                             setVisible(true);
                         } catch (InterruptedException e) {
@@ -98,13 +97,12 @@ public class home extends javax.swing.JFrame {
         child.setThread(threadGui);
 
         //từ đây trở lên là trước khi luồng chính bị đóng
-        threadGui.start();    
-        
- */
+        threadGui.start();
        
     }
     private void initShow()
     {
+        this.setLocationRelativeTo(null);
            listJCheckbox.add(jCheckBox1);
         listJCheckbox.add(jCheckBox2);
         listJCheckbox.add(jCheckBox3);
@@ -164,7 +162,6 @@ public class home extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
         jTabbedPane = new javax.swing.JTabbedPane();
         jPanel8 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
@@ -621,16 +618,21 @@ public class home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel_ThongTinTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jTabbedPane.addTab("Quản lý sản phẩm", new javax.swing.ImageIcon(getClass().getResource("/iconJava/sanpham.png")), jPanel3); // NOI18N
+        // NOI18N
 
-
-            jTabbedPane.addTab("Bán hàng               ", new javax.swing.ImageIcon(getClass().getResource("/iconJava/banhang.png")), jPanel9); // NOI18N
-            jTabbedPane.addTab("Quản lý nhân viên", new javax.swing.ImageIcon(getClass().getResource("/iconJava/nhanvien3.png")), jPanel1); // NOI18N
-            jTabbedPane.addTab("Quản lý hoá đơn", new javax.swing.ImageIcon(getClass().getResource("/iconJava/hoadon2.png")), jPanel2); // NOI18N
-            jTabbedPane.addTab("Quản lý khách hàng", new javax.swing.ImageIcon(getClass().getResource("/iconJava/khachhang.png")), jPanel4); // NOI18N
-            jTabbedPane.addTab("Báo cáo thống kê", new javax.swing.ImageIcon(getClass().getResource("/iconJava/thongke.png")), jPanel5); // NOI18N
-
-
+if (nhanvien.getLOAINV().equals("QUAN LY")) {
+/*
+    jTabbedPane.addTab("Bán hàng  ", new javax.swing.ImageIcon(getClass().getResource("/iconJava/banhang.png")), jPanel9); // NOI18N
+*/
+    jTabbedPane.addTab("Quản lý sản phẩm", new javax.swing.ImageIcon(getClass().getResource("/iconJava/sanpham.png")), jPanel3);
+    jTabbedPane.addTab("Quản lý nhân viên", new javax.swing.ImageIcon(getClass().getResource("/iconJava/nhanvien3.png")), jPanel1); // NOI18N
+    jTabbedPane.addTab("Quản lý hoá đơn", new javax.swing.ImageIcon(getClass().getResource("/iconJava/hoadon2.png")), jPanel2); // NOI18N
+    jTabbedPane.addTab("Quản lý khách hàng", new javax.swing.ImageIcon(getClass().getResource("/iconJava/khachhang.png")), jPanel4); // NOI18N
+    jTabbedPane.addTab("Báo cáo thống kê", new javax.swing.ImageIcon(getClass().getResource("/iconJava/thongke.png")), jPanel5); // NOI18N
+}else
+{
+    jTabbedPane.addTab("Bán hàng  ", new javax.swing.ImageIcon(getClass().getResource("/iconJava/banhang.png")), jPanel9); // NOI18N
+}
         jTabbedPane.addTab("Thông tin tài khoản", new javax.swing.ImageIcon(getClass().getResource("/iconJava/thongtintaikhoan.png")), jPanel6); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -34,6 +34,7 @@ public class DangNhapFrame extends javax.swing.JFrame {
      */
     public DangNhapFrame() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     private Thread threadNhan;
@@ -257,23 +258,13 @@ public class DangNhapFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, sb.toString(), "NHAP TRONG", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        conn = Database.getConnection();
+
 
         //KET NOI DEN CSDL
         try {
-            conn = Database.getConnection();
 
-            String SQL = "ALTER SESSION SET nls_date_format='dd-mm-yyyy';";
-
-            try {
-                Connection conn = Database.getConnection();
-                PreparedStatement ps = conn.prepareStatement(SQL);
-
-
-                ps.executeQuery();
-                conn.prepareStatement("select * from nhanvien");
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            pst=conn.prepareStatement("select * from nhanvien");
             rs = pst.executeQuery();
             int flag = 1;
             while (rs.next()) {

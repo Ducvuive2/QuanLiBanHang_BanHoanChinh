@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileFilter;
 
-public class SwingTester {
+public class    SwingTester {
     public static void main(String[] args) {
         createWindow();
     }

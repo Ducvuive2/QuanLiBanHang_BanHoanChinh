@@ -9,8 +9,12 @@ import QuanLyBanHangDao.SanPhamDao;
 import QuanLyBanHangModel.SanPham;
 import Util.MyConvert;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -37,6 +41,7 @@ public class SanPhamFrame extends javax.swing.JFrame {
 
     private void dataChange() {
         listSanPham = SanPhamDao.queryAllSanPham();
+        listSelectd.removeAll(listSelectd);
         reset();
     }
 
@@ -63,6 +68,13 @@ public class SanPhamFrame extends javax.swing.JFrame {
             javax.swing.JPanel menuItem;
             menuItem = new javax.swing.JPanel();
             lbAnh = new javax.swing.JLabel();
+            BufferedImage bImage = null;
+            try {
+                bImage = ImageIO.read(new File("C:\\Users\\khanh\\Desktop\\QuanLiBanHang_BanHoanChinh-main\\QuanLiBanHang_08\\src\\anhsanpham\\"+sp.getMASP()+".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            lbAnh.setIcon(new ImageIcon(bImage));
             cbChon = new javax.swing.JCheckBox();
             lbMSP = new javax.swing.JLabel();
             jPanel1 = new javax.swing.JPanel();
@@ -400,7 +412,8 @@ public class SanPhamFrame extends javax.swing.JFrame {
                         try { //code sau khi mở lại luồng chính
                             threadGui.wait();
                             listSanPham = child.getSanPhamArrayList();
-                            reset();
+                            if(listSanPham.isEmpty()) dataChange();
+                            else reset();
                         } catch (InterruptedException e) {
                         }
                     }

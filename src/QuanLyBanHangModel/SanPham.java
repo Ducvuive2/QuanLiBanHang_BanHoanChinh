@@ -13,15 +13,11 @@ public class SanPham {
     private String MASP, TENSP, DVT, NUOCSX;
     private Integer GIA;
 
-    public SanPham() {
+    public String getMASP() {
+        return MASP;
     }
 
-    public SanPham(String MASP, String TENSP, String DVT, String NUOCSX, Integer GIA) {
-        this.MASP = MASP;
-        this.TENSP = TENSP;
-        this.DVT = DVT;
-        this.NUOCSX = NUOCSX;
-        this.GIA = GIA;
+    public SanPham() {
     }
 
     @Override
@@ -33,10 +29,6 @@ public class SanPham {
                 ", NUOCSX='" + NUOCSX + '\'' +
                 ", GIA=" + GIA +
                 '}';
-    }
-
-    public String getMASP() {
-        return MASP;
     }
 
     public void setMASP(String MASP) {
@@ -74,5 +66,12 @@ public class SanPham {
     public void setGIA(Integer GIA) {
         this.GIA = GIA;
     }
-    
+
+    public SanPham(String MASP, String TENSP, String DVT, String NUOCSX, Integer GIA) {
+        this.MASP = MASP;
+        this.TENSP = TENSP;
+        this.DVT = DVT;
+        this.NUOCSX = NUOCSX;
+        this.GIA = GIA;
+    }
 }

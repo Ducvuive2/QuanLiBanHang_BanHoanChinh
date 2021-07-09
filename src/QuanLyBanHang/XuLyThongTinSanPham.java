@@ -51,6 +51,7 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         sanPham.setDVT(cbbDVT.getSelectedItem().toString());
         sanPham.setNUOCSX(cbbNSX.getSelectedItem().toString());
         sanPham.setGIA(MyConvert.parseStringToInt(txtGia.getText()));
+
     }
 
     private void paint() {
@@ -59,23 +60,9 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         txtGia.setText(MyConvert.parseIntToString(sanPham.getGIA()));
         if (cbbDVT.getSelectedIndex()!=0)cbbDVT.setSelectedItem(sanPham.getDVT());
         if (cbbNSX.getSelectedIndex()!=0) cbbNSX.setSelectedItem(sanPham.getNUOCSX());
+        lbAnh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/anhsanpham/"+sanPham.getMASP()+".jpg")));
     }
-    private void themAnh()
-    {
-        BufferedImage bImage = null;
-        try {
-            File initialImage = SwingTester.getImage(this);
-            bImage = ImageIO.read(initialImage);
 
-            //ImageIO.write(bImage, "gif", new File("C://Users/Rou/Desktop/image.gif"));
-            ImageIO.write(bImage, "png", new File("C:\\Users\\khanh\\Desktop\\QuanLiBanHang_BanHoanChinh-main\\QuanLiBanHang_08\\src\\anhsanpham"));
-            //ImageIO.write(bImage, "bmp", new File("C://Users/Rou/Desktop/image.bmp"));
-
-        } catch (IOException e) {
-            System.out.println("Exception occured :" + e.getMessage());
-        }
-        System.out.println("Images were written succesfully.");
-    }
 
     public void setThem(Thread a) {
         isInstance = MyInstance.IS_ADD;
@@ -96,13 +83,10 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         if (sanPham != null) paint();
     }
 
-
     public void setTimKiemNC(Thread a) {
         isInstance = MyInstance.IS_FIND;
         threadNhan = a;
         txtMa.setEnabled(true);
-        creat();
-
     }
 
     /**
@@ -145,13 +129,13 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         jLabel4.setText("Đơn vị tính");
 
         cbbDVT.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        cbbDVT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lựa chọn", "cay", "hop", "quyen", "chuc", "cai" }));
+        cbbDVT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lựa chọn", "cây", "hộp", "cuốn", "cái", "bộ" }));
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel5.setText("Nước sản xuất");
 
         cbbNSX.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        cbbNSX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lựa chọn", "Viet Nam", "Singapore", "Trung Quoc", "Thai Lan" }));
+        cbbNSX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lựa chọn", "Việt Nam", "Nhật Bản", "Trung Quốc", "Indonesia" }));
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jLabel6.setText("Giá");
@@ -323,26 +307,24 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
 
         switch (isInstance) {
             case MyInstance.IS_ADD: {
-
                 SanPhamDao.insert(sanPham);
+                try {
+                    ImageIO.write(bImage, "jpg", new File("C:\\Users\\khanh\\Desktop\\QuanLiBanHang_BanHoanChinh-main\\QuanLiBanHang_08\\src\\anhsanpham\\"+sanPham.getMASP()+".jpg"));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             break;
 
-
             case MyInstance.IS_EDIT: {
-
                 SanPhamDao.update(sanPham);
             }
             break;
             case MyInstance.IS_FIND: {
-
                 sanPhamArrayList= SanPhamDao.find(sanPham);
             }
             break;
-
         }
-
-
         dispose();
     }//GEN-LAST:event_btnCTActionPerformed
 
@@ -350,22 +332,18 @@ public class XuLyThongTinSanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnTActionPerformed
-
+    BufferedImage bImage = null;
     private void btnChonAnhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChonAnhActionPerformed
         // TODO add your handling code here:
-        BufferedImage bImage = null;
+
         try {
 
             bImage = ImageIO.read(SwingTester.getImage(this));
-
-
-            ImageIO.write(bImage, "png", new File("C:\\Users\\khanh\\Desktop\\QuanLiBanHang_BanHoanChinh-main\\QuanLiBanHang_08\\src\\anhsanpham\\image.png"));
-
-
+            lbAnh.setIcon(new ImageIcon(bImage));
         } catch (IOException e) {
             System.out.println("Exception occured :" + e.getMessage());
         }
-        System.out.println("Images were written succesfully.");SwingTester.getImage(this);
+        System.out.println("Images were written succesfully.");
     }//GEN-LAST:event_btnChonAnhActionPerformed
 
     /**
